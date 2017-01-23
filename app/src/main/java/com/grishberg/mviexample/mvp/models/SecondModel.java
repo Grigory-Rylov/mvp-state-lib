@@ -1,7 +1,7 @@
 package com.grishberg.mviexample.mvp.models;
 
 import com.grishberg.datafacade.ArrayListResult;
-import com.grishberg.mviexample.mvp.presenters.SecondScreenPresenter;
+import com.grishberg.mviexample.framework.StateReceiver;
 import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
 import com.grishberg.mviexample.utils.ThreadUtils;
 
@@ -17,9 +17,9 @@ import rx.schedulers.Schedulers;
  */
 public class SecondModel {
     public static final int TIMEOUT = 500;
-    private SecondScreenPresenter presenter;
+    private StateReceiver<SecondPresenterStateModel> presenter;
 
-    public void setPresenter(SecondScreenPresenter presenter) {
+    public void setPresenter(StateReceiver<SecondPresenterStateModel> presenter) {
         this.presenter = presenter;
     }
 

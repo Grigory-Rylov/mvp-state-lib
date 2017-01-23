@@ -1,13 +1,12 @@
 package com.grishberg.mviexample.mvp.state.presenter;
 
 import com.grishberg.datafacade.ListResultCloseable;
-
-import java.io.Serializable;
+import com.grishberg.mviexample.framework.MvpState;
 
 /**
  * Created by grishberg on 23.01.17.
  */
-public class SecondPresenterStateModel implements Serializable {
+public class SecondPresenterStateModel implements MvpState {
     public enum State {
         BUTTON_CLICKED,
         RESPONSE_RECEIVED

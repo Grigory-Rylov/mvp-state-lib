@@ -1,6 +1,6 @@
 package com.grishberg.mviexample.mvp.models;
 
-import com.grishberg.mviexample.mvp.presenters.FirstScreenPresenter;
+import com.grishberg.mviexample.framework.StateReceiver;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
 import com.grishberg.mviexample.utils.ThreadUtils;
 
@@ -13,9 +13,9 @@ import rx.schedulers.Schedulers;
  */
 public class FirstModel {
     public static final int TIMEOUT = 5000;
-    private FirstScreenPresenter presenter;
+    private StateReceiver<FirstPresenterStateModel> presenter;
 
-    public void setPresenter(final FirstScreenPresenter presenter) {
+    public void setPresenter(final StateReceiver<FirstPresenterStateModel> presenter) {
         this.presenter = presenter;
     }
 

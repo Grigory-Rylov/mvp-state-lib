@@ -1,6 +1,6 @@
 package com.grishberg.mviexample.mvp.presenters;
 
-import com.grishberg.mviexample.framework.BaseMviPresenter;
+import com.grishberg.mviexample.framework.BaseMvpPresenter;
 import com.grishberg.mviexample.mvp.models.FirstModel;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.FirstViewStateModel;
@@ -9,7 +9,7 @@ import com.grishberg.mviexample.mvp.view.FirstView;
 /**
  * Created by grishberg on 23.01.17.
  */
-public class FirstScreenPresenter extends BaseMviPresenter<FirstView, FirstViewStateModel, FirstPresenterStateModel> {
+public class FirstScreenPresenter extends BaseMvpPresenter<FirstView, FirstViewStateModel, FirstPresenterStateModel> {
     private FirstModel model;
 
     public FirstScreenPresenter() {

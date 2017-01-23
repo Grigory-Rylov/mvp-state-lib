@@ -44,6 +44,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
     @Override
     public void updateView(final FirstViewStateModel viewStateModel) {
+        buttonStart.setEnabled(false);
         buttonSecondStep.setEnabled(false);
         if (viewStateModel.isError()) {
             buttonStart.setEnabled(true);
@@ -73,14 +74,11 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.buttonStart:
-                buttonStart.setEnabled(false);
-                getPresenter().updateState(FirstPresenterStateModel.makeClick());
-                break;
-            case R.id.buttonSecondStep:
-                SecondActivity.start(this);
-                break;
+        if (view.getId() == R.id.buttonStart) {
+            getPresenter().updateState(FirstPresenterStateModel.makeClick());
+            return;
         }
+
+        SecondActivity.start(this);
     }
 }

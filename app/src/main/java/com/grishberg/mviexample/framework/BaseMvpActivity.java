@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMvpActivity<P extends BaseMviPresenter, S extends Serializable>
+public abstract class BaseMvpActivity<P extends BaseMvpPresenter, S extends Serializable>
         extends AppCompatActivity implements BaseView<S> {
     private static final String TAG = BaseMvpActivity.class.getSimpleName();
     private P presenter;

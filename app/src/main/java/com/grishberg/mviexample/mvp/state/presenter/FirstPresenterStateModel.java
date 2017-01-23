@@ -1,11 +1,11 @@
 package com.grishberg.mviexample.mvp.state.presenter;
 
-import java.io.Serializable;
+import com.grishberg.mviexample.framework.MvpState;
 
 /**
  * Created by grishberg on 23.01.17.
  */
-public class FirstPresenterStateModel implements Serializable {
+public class FirstPresenterStateModel implements MvpState {
     public enum State {
         CLICKED,
         RESPONSE_RECEIVED

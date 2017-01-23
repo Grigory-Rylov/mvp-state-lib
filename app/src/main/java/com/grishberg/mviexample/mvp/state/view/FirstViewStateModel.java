@@ -1,12 +1,12 @@
 package com.grishberg.mviexample.mvp.state.view;
 
-import java.io.Serializable;
+import com.grishberg.mviexample.framework.MvpState;
 
 /**
  * Created by grishberg on 23.01.17.
  * Sample view state one
  */
-public class FirstViewStateModel implements Serializable {
+public class FirstViewStateModel implements MvpState {
     private String title;
     private String description;
     private int count;
@@ -57,5 +57,4 @@ public class FirstViewStateModel implements Serializable {
     public boolean isProgress() {
         return isProgress;
     }
-
 }

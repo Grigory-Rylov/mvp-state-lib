@@ -8,16 +8,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * Presenter storage
  */
 public class MvpDelegate {
-    private static Map<String, BaseMviPresenter> presenterMap = new ConcurrentHashMap<>();
+    private static Map<String, BaseMvpPresenter> presenterMap = new ConcurrentHashMap<>();
 
     private MvpDelegate() {
     }
 
-    public static BaseMviPresenter getPresenter(final Class clazz) {
+    public static BaseMvpPresenter getPresenter(final Class clazz) {
         return presenterMap.get(clazz.getName());
     }
 
-    public static void putPresenter(final Class clazz, BaseMviPresenter presenter) {
+    public static void putPresenter(final Class clazz, BaseMvpPresenter presenter) {
         presenterMap.put(clazz.getName(), presenter);
     }
 

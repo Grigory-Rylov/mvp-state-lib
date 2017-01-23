@@ -5,12 +5,11 @@ import android.support.annotation.Nullable;
 
 import com.grishberg.mviexample.framework.model.ModelWithNonSerializable;
 
-import java.io.Serializable;
-
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMviPresenter<V extends BaseView<VS>, VS extends Serializable, PS extends Serializable> {
+public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpState, PS extends MvpState>
+        implements StateReceiver<PS> {
     private static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
     private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
     private V view;
@@ -73,9 +72,10 @@ public abstract class BaseMviPresenter<V extends BaseView<VS>, VS extends Serial
         }
     }
 
-    public void updateState(PS presenterState) {
+    @Override
+    public void updateState(final PS presenterState) {
         this.presenterState = presenterState;
-        onStateUpdated(presenterState);
+        onStateUpdated(this.presenterState);
     }
 
     protected abstract void onStateUpdated(PS presenterState);
