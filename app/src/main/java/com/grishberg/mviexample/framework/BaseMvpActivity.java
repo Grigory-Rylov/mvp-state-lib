@@ -18,8 +18,10 @@ public abstract class BaseMvpActivity<P extends BaseMviPresenter, S extends Seri
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
         presenter = (P) MvpDelegate.getPresenter(getClass());
         if (presenter == null) {
+            Log.d(TAG, "onCreate: presenter is ");
             presenter = createPresenter();
             MvpDelegate.putPresenter(getClass(), presenter);
         }
@@ -29,32 +31,40 @@ public abstract class BaseMvpActivity<P extends BaseMviPresenter, S extends Seri
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState: ");
         presenter.saveInstanceState(outState);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
         if (isFinishing()) {
             Log.d(TAG, "onDestroy: is finishing");
-            MvpDelegate.putPresenter(getClass(), null);
+            MvpDelegate.removePresenter(getClass());
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: ");
         presenter.attachView(this, null);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause: ");
         presenter.detachView();
         if (isFinishing()) {
             Log.d(TAG, "onPause: is finishing");
-            MvpDelegate.putPresenter(getClass(), null);
+            MvpDelegate.removePresenter(getClass());
         }
+    }
+
+    protected P getPresenter() {
+        return presenter;
     }
 
     protected abstract P createPresenter();

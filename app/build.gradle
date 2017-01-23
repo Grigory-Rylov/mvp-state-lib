@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -11,6 +13,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -20,10 +26,38 @@ android {
 }
 
 dependencies {
+    String support_version = "25.1.0"
+    String rx_version = "1.2.1"
+    String dagger_version = "2.4"
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile project(':datafacade')
+
+    //dagger
+    /*
+    testCompile "com.google.dagger:dagger:$dagger_version"
+    compile "com.google.dagger:dagger:$dagger_version"
+    apt "com.google.dagger:dagger-compiler:$dagger_version"
+    testApt "com.google.dagger:dagger-compiler:$dagger_version"
+    */
+
+    //rx
+    compile "io.reactivex:rxandroid:$rx_version"
+
+    //leakcanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+    //support
+    compile "com.android.support:appcompat-v7:$support_version"
+    compile "com.android.support:support-v4:$support_version"
+    compile "com.android.support:recyclerview-v7:$support_version"
+    compile "com.android.support:design:$support_version"
+
+
     testCompile 'junit:junit:4.12'
 }

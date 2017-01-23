@@ -3,19 +3,21 @@ package com.grishberg.mviexample.framework;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.grishberg.mviexample.framework.model.ModelWithNonSerializable;
+
 import java.io.Serializable;
 
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMviPresenter<V extends BaseView<S>, S extends Serializable, PS extends Serializable> {
-    public static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
-    public static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
+public abstract class BaseMviPresenter<V extends BaseView<VS>, VS extends Serializable, PS extends Serializable> {
+    private static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
+    private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
     private V view;
-    private S viewState;
+    private VS viewState;
     private PS presenterState;
 
-    protected void updateViewState(S viewState) {
+    protected void updateViewState(VS viewState) {
         this.viewState = viewState;
         if (view != null) {
             view.updateView(viewState);
@@ -28,18 +30,29 @@ public abstract class BaseMviPresenter<V extends BaseView<S>, S extends Serializ
             viewState = restoreViewState(savedInstanceState);
         }
         if (presenterState == null) {
-            presenterState = restorePresenterState(savedInstanceState);
+            final PS restoredState = restorePresenterState(savedInstanceState);
+            if (restoredState != null) {
+                updateState(restoredState);
+            }
         }
         if (viewState != null) {
+            if (viewState instanceof ModelWithNonSerializable && ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
+                onNonSerializableEmpty(viewState);
+                return;
+            }
             view.updateView(viewState);
         }
     }
 
-    private S restoreViewState(@Nullable final Bundle savedInstanceState) {
+    protected void onNonSerializableEmpty(VS viewState) {
+        //To be overriden in subclass
+    }
+
+    private VS restoreViewState(@Nullable final Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             return null;
         }
-        return (S) savedInstanceState.getSerializable(this.getClass().getName() + VIEW_STATE_SUFFIX);
+        return (VS) savedInstanceState.getSerializable(this.getClass().getName() + VIEW_STATE_SUFFIX);
     }
 
     private PS restorePresenterState(@Nullable final Bundle savedInstanceState) {
@@ -62,5 +75,8 @@ public abstract class BaseMviPresenter<V extends BaseView<S>, S extends Serializ
 
     public void updateState(PS presenterState) {
         this.presenterState = presenterState;
+        onStateUpdated(presenterState);
     }
+
+    protected abstract void onStateUpdated(PS presenterState);
 }

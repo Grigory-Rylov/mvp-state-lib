@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_title">Авторизация</string>
+    <string name="auth_login_hint">Логин</string>
+    <string name="auth_password_hint">Пароль</string>
+    <string name="auth_enter_button_caption">Вход</string>
+    <string name="auth_empty_login">Не введен логин</string>
+    <string name="auth_empty_password">Не введен пароль</string>
+</resources>
