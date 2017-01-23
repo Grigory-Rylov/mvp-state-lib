@@ -1,9 +1,9 @@
-package com.grishberg.mviexample.framework;
+package com.grishberg.mvpstatelibrary.framework;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.grishberg.mviexample.framework.model.ModelWithNonSerializable;
+import com.grishberg.mvpstatelibrary.framework.model.ModelWithNonSerializable;
 
 /**
  * Created by grishberg on 22.01.17.

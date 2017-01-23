@@ -1,4 +1,4 @@
-package com.grishberg.mviexample.framework;
+package com.grishberg.mvpstatelibrary.framework;
 
 /**
  * Created by grishberg on 22.01.17.

@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grishberg.mviexample.R;
-import com.grishberg.mviexample.framework.BaseMvpActivity;
+import com.grishberg.mvpstatelibrary.framework.BaseMvpActivity;
 import com.grishberg.mviexample.mvp.presenters.FirstScreenPresenter;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.FirstViewStateModel;

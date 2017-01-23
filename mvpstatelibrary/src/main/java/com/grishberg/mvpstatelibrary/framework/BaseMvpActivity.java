@@ -1,4 +1,4 @@
-package com.grishberg.mviexample.framework;
+package com.grishberg.mvpstatelibrary.framework;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

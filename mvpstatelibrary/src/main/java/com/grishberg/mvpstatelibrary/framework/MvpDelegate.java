@@ -1,4 +1,4 @@
-package com.grishberg.mviexample.framework;
+package com.grishberg.mvpstatelibrary.framework;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

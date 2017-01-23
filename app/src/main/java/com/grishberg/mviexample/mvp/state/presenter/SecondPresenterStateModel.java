@@ -1,7 +1,7 @@
 package com.grishberg.mviexample.mvp.state.presenter;
 
 import com.grishberg.datafacade.ListResultCloseable;
-import com.grishberg.mviexample.framework.MvpState;
+import com.grishberg.mvpstatelibrary.framework.MvpState;
 
 /**
  * Created by grishberg on 23.01.17.

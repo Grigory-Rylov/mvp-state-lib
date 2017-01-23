@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.grishberg.datafacade.ListResultCloseable;
 import com.grishberg.mviexample.R;
-import com.grishberg.mviexample.framework.BaseMvpActivity;
+import com.grishberg.mvpstatelibrary.framework.BaseMvpActivity;
 import com.grishberg.mviexample.mvp.presenters.SecondScreenPresenter;
 import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.SecondViewStateModel;
