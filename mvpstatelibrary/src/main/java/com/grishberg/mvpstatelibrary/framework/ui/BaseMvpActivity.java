@@ -29,7 +29,7 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter, S extends Seri
             presenter = createPresenter();
             MvpDelegate.putPresenter(getClass(), presenter);
         }
-        presenter.attachView(this, savedInstanceState);
+        presenter.restoreState(savedInstanceState);
     }
 
     @Override
@@ -53,7 +53,7 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter, S extends Seri
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-        presenter.attachView(this, null);
+        presenter.attachView(this);
     }
 
     @Override

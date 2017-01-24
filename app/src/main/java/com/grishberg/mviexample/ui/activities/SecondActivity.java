@@ -36,6 +36,8 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_second);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,14 +49,13 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
         fab.setOnClickListener(view ->
                 getPresenter().updateState(SecondPresenterStateModel.makeFromClick())
         );
-        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected SecondScreenPresenter createPresenter() {
         return new SecondScreenPresenter();
     }
-    
+
     @Override
     public void updateView(final SecondViewStateModel viewStateModel) {
         if (viewStateModel.isError()) {

@@ -6,7 +6,10 @@ import android.support.annotation.Nullable;
 import com.grishberg.mvpstatelibrary.framework.state.ModelWithNonSerializable;
 import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
+import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
 import com.grishberg.mvpstatelibrary.framework.view.BaseView;
+
+import java.io.Serializable;
 
 /**
  * Created by grishberg on 22.01.17.
@@ -26,8 +29,18 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
         }
     }
 
-    public void attachView(final V view, @Nullable final Bundle savedInstanceState) {
+    public void attachView(final V view) {
         this.view = view;
+        if (viewState != null) {
+            if (viewState instanceof ModelWithNonSerializable && ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
+                onNonSerializableEmpty(viewState);
+                return;
+            }
+            view.updateView(viewState);
+        }
+    }
+
+    public void restoreState(@Nullable Bundle savedInstanceState){
         if (viewState == null) {
             viewState = restoreViewState(savedInstanceState);
         }
@@ -37,14 +50,8 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
                 updateState(restoredState);
             }
         }
-        if (viewState != null) {
-            if (viewState instanceof ModelWithNonSerializable && ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
-                onNonSerializableEmpty(viewState);
-                return;
-            }
-            view.updateView(viewState);
-        }
     }
+
 
     protected void onNonSerializableEmpty(VS viewState) {
         //To be overriden in subclass
@@ -82,4 +89,5 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
     }
 
     protected abstract void onStateUpdated(PS presenterState);
+
 }

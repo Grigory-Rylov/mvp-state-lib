@@ -28,6 +28,8 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         titleTextView = (TextView) findViewById(R.id.titleTextView);
@@ -38,8 +40,6 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
         buttonSecondStep = (Button) findViewById(R.id.buttonSecondStep);
         buttonSecondStep.setOnClickListener(this);
-
-        super.onCreate(savedInstanceState);
     }
 
     @Override
