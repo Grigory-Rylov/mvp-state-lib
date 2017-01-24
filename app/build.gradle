@@ -4,7 +4,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.grishberg.mviexample"
         minSdkVersion 16
@@ -29,35 +29,30 @@ dependencies {
     String support_version = "25.1.0"
     String rx_version = "1.2.1"
     String dagger_version = "2.4"
-
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(':datafacade')
-
     //dagger
     /*
-    testCompile "com.google.dagger:dagger:$dagger_version"
-    compile "com.google.dagger:dagger:$dagger_version"
-    apt "com.google.dagger:dagger-compiler:$dagger_version"
-    testApt "com.google.dagger:dagger-compiler:$dagger_version"
-    */
-
+        testCompile "com.google.dagger:dagger:$dagger_version"
+        compile "com.google.dagger:dagger:$dagger_version"
+        apt "com.google.dagger:dagger-compiler:$dagger_version"
+        testApt "com.google.dagger:dagger-compiler:$dagger_version"
+        */
     //rx
     compile "io.reactivex:rxandroid:$rx_version"
-
     //leakcanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
     //support
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:support-v4:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
     compile "com.android.support:design:$support_version"
-
-
     testCompile 'junit:junit:4.12'
+    compile project(':mvpstatelibrary')
+    compile project(':datafacade')
+
 }
