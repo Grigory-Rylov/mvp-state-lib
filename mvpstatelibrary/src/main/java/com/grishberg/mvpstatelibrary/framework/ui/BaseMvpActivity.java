@@ -40,16 +40,6 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter, S extends Seri
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: ");
-        if (isFinishing()) {
-            Log.d(TAG, "onDestroy: is finishing");
-            MvpDelegate.removePresenter(getClass());
-        }
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");

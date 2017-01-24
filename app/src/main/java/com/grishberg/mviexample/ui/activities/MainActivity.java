@@ -25,6 +25,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
     private TextView countTextView;
     private Button buttonStart;
     private Button buttonSecondStep;
+    private Button buttonThirdStep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
         buttonSecondStep = (Button) findViewById(R.id.buttonSecondStep);
         buttonSecondStep.setOnClickListener(this);
+
+        buttonThirdStep = (Button) findViewById(R.id.buttonThirdStep);
+        buttonThirdStep.setOnClickListener(this);
     }
 
     @Override
@@ -74,11 +78,18 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.buttonStart) {
-            getPresenter().updateState(FirstPresenterStateModel.makeClick());
-            return;
-        }
+        switch (view.getId()) {
+            case R.id.buttonStart:
+                getPresenter().updateState(FirstPresenterStateModel.makeClick());
+                break;
 
-        SecondActivity.start(this);
+            case R.id.buttonSecondStep:
+                SecondActivity.start(this);
+                break;
+
+            default:
+                ThirdActivity.start(this);
+                break;
+        }
     }
 }

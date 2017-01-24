@@ -16,14 +16,26 @@ public class MvpDelegate {
     }
 
     public static BaseMvpPresenter getPresenter(final Class clazz) {
-        return presenterMap.get(clazz.getName());
+        return getPresenter(clazz.getName());
+    }
+
+    public static BaseMvpPresenter getPresenter(final String tag) {
+        return presenterMap.get(tag);
     }
 
     public static void putPresenter(final Class clazz, BaseMvpPresenter presenter) {
-        presenterMap.put(clazz.getName(), presenter);
+        putPresenter(clazz.getName(), presenter);
+    }
+
+    public static void putPresenter(final String tag, BaseMvpPresenter presenter) {
+        presenterMap.put(tag, presenter);
     }
 
     public static void removePresenter(final Class clazz) {
-        presenterMap.remove(clazz.getName());
+        removePresenter(clazz.getName());
+    }
+
+    public static void removePresenter(final String tag) {
+        presenterMap.remove(tag);
     }
 }

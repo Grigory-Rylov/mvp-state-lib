@@ -74,6 +74,13 @@
             tools:enabled="true"
             />
 
+        <Button
+            android:id="@+id/buttonThirdStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/third_step_button_title"
+            />
+
     </LinearLayout>
 
 </RelativeLayout>
