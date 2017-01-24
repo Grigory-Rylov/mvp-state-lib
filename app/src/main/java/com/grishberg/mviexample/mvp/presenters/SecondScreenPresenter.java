@@ -1,6 +1,6 @@
 package com.grishberg.mviexample.mvp.presenters;
 
-import com.grishberg.mvpstatelibrary.framework.BaseMvpPresenter;
+import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
 import com.grishberg.mviexample.mvp.models.SecondModel;
 import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.SecondViewStateModel;

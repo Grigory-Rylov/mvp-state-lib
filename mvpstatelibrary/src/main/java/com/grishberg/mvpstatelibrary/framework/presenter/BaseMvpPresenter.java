@@ -1,9 +1,12 @@
-package com.grishberg.mvpstatelibrary.framework;
+package com.grishberg.mvpstatelibrary.framework.presenter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.grishberg.mvpstatelibrary.framework.model.ModelWithNonSerializable;
+import com.grishberg.mvpstatelibrary.framework.state.ModelWithNonSerializable;
+import com.grishberg.mvpstatelibrary.framework.state.MvpState;
+import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
+import com.grishberg.mvpstatelibrary.framework.view.BaseView;
 
 /**
  * Created by grishberg on 22.01.17.

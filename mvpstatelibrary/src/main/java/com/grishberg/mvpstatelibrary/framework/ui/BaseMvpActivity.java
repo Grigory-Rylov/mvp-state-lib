@@ -1,9 +1,13 @@
-package com.grishberg.mvpstatelibrary.framework;
+package com.grishberg.mvpstatelibrary.framework.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
+import com.grishberg.mvpstatelibrary.framework.view.BaseView;
+import com.grishberg.mvpstatelibrary.framework.MvpDelegate;
 
 import java.io.Serializable;
 

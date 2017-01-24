@@ -1,6 +1,6 @@
 package com.grishberg.mviexample.mvp.state.view;
 
-import com.grishberg.mvpstatelibrary.framework.MvpState;
+import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 
 /**
  * Created by grishberg on 23.01.17.

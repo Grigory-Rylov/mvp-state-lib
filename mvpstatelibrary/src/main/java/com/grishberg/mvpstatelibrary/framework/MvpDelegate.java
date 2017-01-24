@@ -1,5 +1,7 @@
 package com.grishberg.mvpstatelibrary.framework;
 
+import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

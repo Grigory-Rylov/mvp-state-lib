@@ -1,4 +1,4 @@
-package com.grishberg.mvpstatelibrary.framework;
+package com.grishberg.mvpstatelibrary.framework.view;
 
 /**
  * Created by grishberg on 22.01.17.

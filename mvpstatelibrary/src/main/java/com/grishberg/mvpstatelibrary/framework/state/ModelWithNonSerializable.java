@@ -1,6 +1,4 @@
-package com.grishberg.mvpstatelibrary.framework.model;
-
-import com.grishberg.mvpstatelibrary.framework.MvpState;
+package com.grishberg.mvpstatelibrary.framework.state;
 
 /**
  * Created by grishberg on 23.01.17.

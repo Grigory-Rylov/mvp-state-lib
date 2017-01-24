@@ -1,4 +1,4 @@
-package com.grishberg.mvpstatelibrary.framework;
+package com.grishberg.mvpstatelibrary.framework.state;
 
 import java.io.Serializable;
 

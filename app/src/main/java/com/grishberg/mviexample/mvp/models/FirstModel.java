@@ -1,6 +1,6 @@
 package com.grishberg.mviexample.mvp.models;
 
-import com.grishberg.mvpstatelibrary.framework.StateReceiver;
+import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
 import com.grishberg.mviexample.utils.ThreadUtils;
 

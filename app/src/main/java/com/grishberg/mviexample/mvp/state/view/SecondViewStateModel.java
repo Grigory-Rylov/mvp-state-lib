@@ -1,7 +1,7 @@
 package com.grishberg.mviexample.mvp.state.view;
 
 import com.grishberg.datafacade.ListResultCloseable;
-import com.grishberg.mvpstatelibrary.framework.model.ModelWithNonSerializable;
+import com.grishberg.mvpstatelibrary.framework.state.ModelWithNonSerializable;
 
 /**
  * Created by grishberg on 23.01.17.
