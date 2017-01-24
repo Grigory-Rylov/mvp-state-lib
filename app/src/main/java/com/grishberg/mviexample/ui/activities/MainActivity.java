@@ -43,6 +43,11 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
     }
 
     @Override
+    protected FirstScreenPresenter createPresenter() {
+        return new FirstScreenPresenter();
+    }
+
+    @Override
     public void updateView(final FirstViewStateModel viewStateModel) {
         buttonStart.setEnabled(false);
         buttonSecondStep.setEnabled(false);
@@ -65,11 +70,6 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
 
     private void showError() {
         Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected FirstScreenPresenter createPresenter() {
-        return new FirstScreenPresenter();
     }
 
     @Override

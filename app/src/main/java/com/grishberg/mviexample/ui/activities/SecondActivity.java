@@ -51,6 +51,11 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
     }
 
     @Override
+    protected SecondScreenPresenter createPresenter() {
+        return new SecondScreenPresenter();
+    }
+    
+    @Override
     public void updateView(final SecondViewStateModel viewStateModel) {
         if (viewStateModel.isError()) {
             showError();
@@ -81,10 +86,5 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
                 Log.e(TAG, "onDestroy: ", e);
             }
         }
-    }
-
-    @Override
-    protected SecondScreenPresenter createPresenter() {
-        return new SecondScreenPresenter();
     }
 }
