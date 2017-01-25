@@ -9,7 +9,7 @@ import com.grishberg.mviexample.mvp.view.SecondView;
 /**
  * Created by grishberg on 23.01.17.
  */
-public class SecondScreenPresenter extends BaseMvpPresenter<SecondView, SecondViewStateModel, SecondPresenterStateModel> {
+public class SecondScreenPresenter extends BaseMvpPresenter<SecondViewStateModel, SecondPresenterStateModel> {
     private SecondModel model;
 
     public SecondScreenPresenter() {

@@ -11,11 +11,9 @@ import android.widget.TextView;
 import com.grishberg.mviexample.R;
 import com.grishberg.mviexample.mvp.presenters.FirstFragmentPresenter;
 import com.grishberg.mviexample.mvp.state.view.FirstFragmentViewState;
-import com.grishberg.mviexample.mvp.view.FirstFragmentView;
 import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpFragment;
 
-public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter, FirstFragmentViewState>
-        implements FirstFragmentView {
+public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter, FirstFragmentViewState> {
     private static final String ARG_POSITION = "argPosition";
 
     private int position;
@@ -59,7 +57,7 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter, First
     }
 
     @Override
-    public void updateView(FirstFragmentViewState viewStateModel) {
+    public void onModelUpdated(FirstFragmentViewState viewStateModel) {
 
     }
 

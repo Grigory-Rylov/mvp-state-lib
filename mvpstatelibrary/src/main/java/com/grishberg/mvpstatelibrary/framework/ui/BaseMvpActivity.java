@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
+import com.grishberg.mvpstatelibrary.framework.state.StateObserver;
 import com.grishberg.mvpstatelibrary.framework.view.BaseView;
 import com.grishberg.mvpstatelibrary.framework.MvpDelegate;
 
@@ -14,8 +15,8 @@ import java.io.Serializable;
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMvpActivity<P extends BaseMvpPresenter, S extends Serializable>
-        extends AppCompatActivity implements BaseView<S> {
+public abstract class BaseMvpActivity<P extends BaseMvpPresenter, VS extends Serializable>
+        extends AppCompatActivity implements StateObserver<VS> {
     private static final String TAG = BaseMvpActivity.class.getSimpleName();
     private P presenter;
 
@@ -43,14 +44,14 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter, S extends Seri
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-        presenter.attachView(this);
+        presenter.subscribe(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause: ");
-        presenter.detachView();
+        presenter.unSubscribe(this);
         if (isFinishing()) {
             Log.d(TAG, "onPause: is finishing");
             MvpDelegate.removePresenter(getClass());

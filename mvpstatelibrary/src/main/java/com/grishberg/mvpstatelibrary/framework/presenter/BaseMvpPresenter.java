@@ -5,40 +5,51 @@ import android.support.annotation.Nullable;
 
 import com.grishberg.mvpstatelibrary.framework.state.ModelWithNonSerializable;
 import com.grishberg.mvpstatelibrary.framework.state.MvpState;
+import com.grishberg.mvpstatelibrary.framework.state.StateObserver;
 import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
-import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
-import com.grishberg.mvpstatelibrary.framework.view.BaseView;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpState, PS extends MvpState>
+public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
         implements StateReceiver<PS> {
     private static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
     private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
-    private V view;
+    final List<StateObserver<VS>> observers = new ArrayList<>();
+
     private VS viewState;
     private PS presenterState;
 
     protected void updateViewState(VS viewState) {
         this.viewState = viewState;
-        if (view != null) {
-            view.updateView(viewState);
+
+        notifyObservers();
+    }
+
+    private void notifyObservers() {
+        for (StateObserver<VS> observer : observers) {
+            observer.onModelUpdated(viewState);
         }
     }
 
-    public void attachView(final V view) {
-        this.view = view;
+    public void subscribe(final StateObserver<VS> stateObserver) {
+        observers.add(stateObserver);
+
         if (viewState != null) {
             if (viewState instanceof ModelWithNonSerializable &&
                     ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
                 onNonSerializableEmpty(viewState);
                 return;
             }
-            view.updateView(viewState);
+            stateObserver.onModelUpdated(viewState);
         }
+    }
+
+    public void unSubscribe(final StateObserver<VS> stateObserver) {
+        observers.remove(stateObserver);
     }
 
     public void restoreState(@Nullable Bundle savedInstanceState) {
@@ -69,10 +80,6 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
             return null;
         }
         return (PS) savedInstanceState.getSerializable(this.getClass().getName() + PRESENTER_STATE_SUFFIX);
-    }
-
-    public void detachView() {
-        view = null;
     }
 
     public void saveInstanceState(final Bundle savedInstanceState) {

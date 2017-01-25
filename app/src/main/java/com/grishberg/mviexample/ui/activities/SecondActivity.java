@@ -17,13 +17,11 @@ import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
 import com.grishberg.mviexample.mvp.presenters.SecondScreenPresenter;
 import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.SecondViewStateModel;
-import com.grishberg.mviexample.mvp.view.SecondView;
 
 import java.io.IOException;
 import java.util.Locale;
 
-public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, SecondViewStateModel>
-        implements SecondView {
+public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, SecondViewStateModel> {
     private static final String TAG = SecondActivity.class.getSimpleName();
 
     private ProgressBar progressBar;
@@ -64,7 +62,7 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
     }
 
     @Override
-    public void updateView(final SecondViewStateModel viewStateModel) {
+    public void onModelUpdated(final SecondViewStateModel viewStateModel) {
         if (viewStateModel.isError()) {
             showError();
             return;

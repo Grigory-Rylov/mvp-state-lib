@@ -12,12 +12,11 @@ import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
 import com.grishberg.mviexample.mvp.presenters.FirstScreenPresenter;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.FirstViewStateModel;
-import com.grishberg.mviexample.mvp.view.FirstView;
 
 import java.util.Locale;
 
 public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstViewStateModel>
-        implements FirstView, View.OnClickListener {
+        implements View.OnClickListener {
 
     private ProgressBar progressBar;
     private TextView titleTextView;
@@ -59,7 +58,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
     }
 
     @Override
-    public void updateView(final FirstViewStateModel viewStateModel) {
+    public void onModelUpdated(final FirstViewStateModel viewStateModel) {
         buttonStart.setEnabled(false);
         buttonSecondStep.setEnabled(false);
         if (viewStateModel.isError()) {

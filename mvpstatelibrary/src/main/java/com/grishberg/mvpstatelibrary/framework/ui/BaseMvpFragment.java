@@ -7,15 +7,15 @@ import android.util.Log;
 
 import com.grishberg.mvpstatelibrary.framework.MvpDelegate;
 import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
-import com.grishberg.mvpstatelibrary.framework.view.BaseView;
+import com.grishberg.mvpstatelibrary.framework.state.StateObserver;
 
 import java.io.Serializable;
 
 /**
  * Created by grishberg on 24.01.17.
  */
-public abstract class BaseMvpFragment<P extends BaseMvpPresenter, S extends Serializable>
-        extends Fragment implements BaseView<S> {
+public abstract class BaseMvpFragment<P extends BaseMvpPresenter, VS extends Serializable>
+        extends Fragment implements StateObserver<VS> {
     private static final String TAG = BaseMvpFragment.class.getSimpleName();
     private P presenter;
 
@@ -66,14 +66,14 @@ public abstract class BaseMvpFragment<P extends BaseMvpPresenter, S extends Seri
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-        presenter.attachView(this);
+        presenter.subscribe(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause: ");
-        presenter.detachView();
+        presenter.unSubscribe(this);
         if (getActivity().isFinishing()) {
             Log.d(TAG, "onPause: is finishing");
             MvpDelegate.removePresenter(getFragmentTag());
