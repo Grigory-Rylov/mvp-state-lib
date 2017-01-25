@@ -39,12 +39,19 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_second);
+        initWidgets();
+        initButtonHandlers();
+    }
+
+    private void initWidgets() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
+    }
 
+    private void initButtonHandlers() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view ->
                 getPresenter().updateState(SecondPresenterStateModel.makeFromClick())
@@ -68,7 +75,7 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter, Secon
         if (viewStateModel.isProgress()) {
             return;
         }
-
+        // update values for result
         this.values = viewStateModel.getValues();
         resultTextView.setText(String.format(Locale.US, "%d", values.size()));
     }
