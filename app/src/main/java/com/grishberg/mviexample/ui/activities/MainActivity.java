@@ -32,19 +32,26 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        initWidgets();
+        initButtonHandlers();
+    }
+
+    private void initWidgets() {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         titleTextView = (TextView) findViewById(R.id.titleTextView);
         descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
         countTextView = (TextView) findViewById(R.id.countTextView);
         buttonStart = (Button) findViewById(R.id.buttonStart);
-        buttonStart.setOnClickListener(this);
-
         buttonSecondStep = (Button) findViewById(R.id.buttonSecondStep);
-        buttonSecondStep.setOnClickListener(this);
-
         buttonThirdStep = (Button) findViewById(R.id.buttonThirdStep);
+    }
+
+    private void initButtonHandlers() {
+        buttonStart.setOnClickListener(this);
+        buttonSecondStep.setOnClickListener(this);
         buttonThirdStep.setOnClickListener(this);
     }
+
 
     @Override
     protected FirstScreenPresenter createPresenter() {
@@ -64,8 +71,10 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         progressBar.setVisibility(viewStateModel.isProgress() ? View.VISIBLE : View.GONE);
 
         if (viewStateModel.isProgress()) {
+            // if isProgress than no data for show
             return;
         }
+        // update views for response
         titleTextView.setText(viewStateModel.getTitle());
         descriptionTextView.setText(viewStateModel.getDescription());
         countTextView.setText(String.format(Locale.US, "%d", viewStateModel.getCount()));
