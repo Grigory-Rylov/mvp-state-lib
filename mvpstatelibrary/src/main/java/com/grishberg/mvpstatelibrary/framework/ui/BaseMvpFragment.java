@@ -24,8 +24,8 @@ public abstract class BaseMvpFragment<P extends BaseMvpPresenter, S extends Seri
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
         presenter = (P) MvpDelegate.getPresenter(getFragmentTag());
+        Log.d(TAG, "onCreate: presenter is " + presenter);
         if (presenter == null) {
-            Log.d(TAG, "onCreate: presenter is ");
             presenter = createPresenter();
             MvpDelegate.putPresenter(getFragmentTag(), presenter);
         }

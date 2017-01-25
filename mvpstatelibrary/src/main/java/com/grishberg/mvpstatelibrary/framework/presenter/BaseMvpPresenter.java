@@ -32,7 +32,8 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
     public void attachView(final V view) {
         this.view = view;
         if (viewState != null) {
-            if (viewState instanceof ModelWithNonSerializable && ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
+            if (viewState instanceof ModelWithNonSerializable &&
+                    ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
                 onNonSerializableEmpty(viewState);
                 return;
             }
@@ -40,7 +41,7 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
         }
     }
 
-    public void restoreState(@Nullable Bundle savedInstanceState){
+    public void restoreState(@Nullable Bundle savedInstanceState) {
         if (viewState == null) {
             viewState = restoreViewState(savedInstanceState);
         }
@@ -51,7 +52,6 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
             }
         }
     }
-
 
     protected void onNonSerializableEmpty(VS viewState) {
         //To be overriden in subclass
@@ -89,5 +89,4 @@ public abstract class BaseMvpPresenter<V extends BaseView<VS>, VS extends MvpSta
     }
 
     protected abstract void onStateUpdated(PS presenterState);
-
 }
