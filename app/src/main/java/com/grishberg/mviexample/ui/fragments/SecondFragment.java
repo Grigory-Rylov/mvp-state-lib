@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.grishberg.mviexample.R;
+import com.grishberg.mviexample.mvp.presenters.SecondFragmentPresenter;
+import com.grishberg.mviexample.mvp.state.view.SecondFragmentViewState;
+import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpFragment;
 
-public class SecondFragment extends Fragment {
+public class SecondFragment extends BaseMvpFragment<SecondFragmentPresenter, SecondFragmentViewState> {
     private static final String ARG_POSITION = "argPosition";
 
     private int position;
@@ -47,6 +50,16 @@ public class SecondFragment extends Fragment {
         textView = (TextView) inflate.findViewById(R.id.fragment_second_text);
         textView.setText(String.format("%d", position));
         return inflate;
+    }
+
+    @Override
+    protected SecondFragmentPresenter createPresenter() {
+        return new SecondFragmentPresenter();
+    }
+
+    @Override
+    public void updateView(SecondFragmentViewState viewStateModel) {
+
     }
 
     public void onButtonPressed() {
