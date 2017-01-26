@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grishberg.mviexample.R;
+import com.grishberg.mviexample.ui.view.BalanceView;
 import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
 import com.grishberg.mviexample.mvp.presenters.FirstScreenPresenter;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
@@ -25,6 +26,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
     private Button buttonStart;
     private Button buttonSecondStep;
     private Button buttonThirdStep;
+    private BalanceView balanceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         setContentView(R.layout.activity_main);
         initWidgets();
         initButtonHandlers();
+        balanceView.registerNestedView(this, savedInstanceState);
     }
 
     private void initWidgets() {
@@ -43,6 +46,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonSecondStep = (Button) findViewById(R.id.buttonSecondStep);
         buttonThirdStep = (Button) findViewById(R.id.buttonThirdStep);
+        balanceView = (BalanceView) findViewById(R.id.balanceView);
     }
 
     private void initButtonHandlers() {
@@ -50,7 +54,6 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         buttonSecondStep.setOnClickListener(this);
         buttonThirdStep.setOnClickListener(this);
     }
-
 
     @Override
     protected FirstScreenPresenter createPresenter() {
@@ -78,6 +81,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         descriptionTextView.setText(viewStateModel.getDescription());
         countTextView.setText(String.format(Locale.US, "%d", viewStateModel.getCount()));
         buttonSecondStep.setEnabled(true);
+        balanceView.updateBalance();
     }
 
     private void showError() {

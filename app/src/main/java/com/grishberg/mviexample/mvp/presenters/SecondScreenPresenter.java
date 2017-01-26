@@ -4,7 +4,6 @@ import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
 import com.grishberg.mviexample.mvp.models.SecondModel;
 import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
 import com.grishberg.mviexample.mvp.state.view.SecondViewStateModel;
-import com.grishberg.mviexample.mvp.view.SecondView;
 
 /**
  * Created by grishberg on 23.01.17.
