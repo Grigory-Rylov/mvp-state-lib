@@ -14,6 +14,7 @@ import com.grishberg.mvpstatelibrary.framework.view.MvpLinearLayout;
 
 /**
  * Created by grishberg on 26.01.17.
+ * Example nested view with presenter
  */
 public class BalanceView extends MvpLinearLayout<BalanceViewPresenter, BalanceViewState> {
     private static final String TAG = BalanceView.class.getSimpleName();
