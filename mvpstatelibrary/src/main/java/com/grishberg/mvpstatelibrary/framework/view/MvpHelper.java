@@ -11,6 +11,7 @@ import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
 
 /**
  * Created by grishberg on 26.01.17.
+ * Mvp helper for custom views
  */
 public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver {
     private static final String TAG = MvpHelper.class.getSimpleName();
@@ -93,9 +94,9 @@ public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver 
         return presenter;
     }
 
-    public String getDelegateTag() {
+    private String getDelegateTag() {
         if (delegateTag == null) {
-            final StringBuilder sb = new StringBuilder(getClass().getName());
+            final StringBuilder sb = new StringBuilder(tagHolder.getClass().getName());
             sb.append(":");
             sb.append(tagHolder.getId());
             delegateTag = sb.toString();

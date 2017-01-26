@@ -5,7 +5,6 @@
     <string name="second_step_button_title">Go to next step</string>
     <string name="title_activity_third">ThirdActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="third_step_button_title">Open ViewPager</string>
     <string name="fragment_first_title">FirstFragment</string>
