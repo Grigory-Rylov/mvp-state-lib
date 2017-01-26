@@ -8,8 +8,7 @@ import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 import com.grishberg.mvpstatelibrary.framework.state.StateObserver;
 import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 /**
  * Created by grishberg on 22.01.17.
@@ -18,7 +17,7 @@ public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
         implements StateReceiver<PS> {
     private static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
     private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
-    final List<StateObserver<VS>> observers = new ArrayList<>();
+    final HashSet<StateObserver<VS>> observers = new HashSet<>();
 
     private VS viewState;
     private PS presenterState;
@@ -36,9 +35,7 @@ public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
     }
 
     public void subscribe(final StateObserver<VS> stateObserver) {
-        observers.add(stateObserver);
-
-        if (viewState != null) {
+        if (observers.add(stateObserver) && viewState != null) {
             if (viewState instanceof ModelWithNonSerializable &&
                     ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
                 onNonSerializableEmpty(viewState);

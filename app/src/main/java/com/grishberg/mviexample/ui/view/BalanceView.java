@@ -19,19 +19,13 @@ public class BalanceView extends MvpLinearLayout<BalanceViewPresenter, BalanceVi
     private static final String TAG = BalanceView.class.getSimpleName();
     private TextView balanceTextView;
 
-    public BalanceView(Context context) {
-        this(context, null, 0);
-    }
-
     public BalanceView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public BalanceView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(context, attrs, 0);
 
         View rootView = inflate(context, R.layout.view_custom_balance, this);
         balanceTextView = (TextView) rootView.findViewById(R.id.custom_box_text);
+
+        getPresenter().updateState(BalancePresenterState.makeRequest());
     }
 
     @Override
@@ -43,9 +37,5 @@ public class BalanceView extends MvpLinearLayout<BalanceViewPresenter, BalanceVi
     @Override
     protected BalanceViewPresenter providePresenter() {
         return new BalanceViewPresenter();
-    }
-
-    public void updateBalance() {
-        getPresenter().updateState(BalancePresenterState.makeRequest());
     }
 }

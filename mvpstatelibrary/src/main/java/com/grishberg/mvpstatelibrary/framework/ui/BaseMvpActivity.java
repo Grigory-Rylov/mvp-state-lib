@@ -9,11 +9,10 @@ import com.grishberg.mvpstatelibrary.framework.lifecycle.LifeCycleObservable;
 import com.grishberg.mvpstatelibrary.framework.lifecycle.LifeCycleObserver;
 import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
 import com.grishberg.mvpstatelibrary.framework.state.StateObserver;
-import com.grishberg.mvpstatelibrary.framework.view.BaseView;
 import com.grishberg.mvpstatelibrary.framework.MvpDelegate;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by grishberg on 22.01.17.
@@ -22,7 +21,7 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter, VS extends Ser
         extends AppCompatActivity implements StateObserver<VS>, LifeCycleObservable {
     private static final String TAG = BaseMvpActivity.class.getSimpleName();
     private P presenter;
-    private ArrayList<LifeCycleObserver> observers = new ArrayList<>();
+    private HashSet<LifeCycleObserver> observers = new HashSet<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,11 +34,6 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter, VS extends Ser
             MvpDelegate.putPresenter(getDelegateTag(), presenter);
         }
         presenter.restoreState(savedInstanceState);
-
-        //TODO: maybe do not need
-        for (LifeCycleObserver observer : observers) {
-            observer.onCreate(savedInstanceState);
-        }
     }
 
     @Override

@@ -16,6 +16,9 @@ import com.grishberg.mviexample.mvp.state.view.FirstViewStateModel;
 
 import java.util.Locale;
 
+/**
+ * FirstScreen View
+ */
 public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstViewStateModel>
         implements View.OnClickListener {
 
@@ -26,7 +29,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
     private Button buttonStart;
     private Button buttonSecondStep;
     private Button buttonThirdStep;
-    private BalanceView balanceView;
+    private BalanceView balanceView; // view of nested presenter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         setContentView(R.layout.activity_main);
         initWidgets();
         initButtonHandlers();
+        //register view of nested presenter to parent life cycle
         balanceView.registerNestedView(this, savedInstanceState);
     }
 
@@ -60,6 +64,11 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         return new FirstScreenPresenter();
     }
 
+    /**
+     * Update view after changes from presenter
+     *
+     * @param viewStateModel - model with updates from presenter
+     */
     @Override
     public void onModelUpdated(final FirstViewStateModel viewStateModel) {
         buttonStart.setEnabled(false);
@@ -81,7 +90,6 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter, FirstVie
         descriptionTextView.setText(viewStateModel.getDescription());
         countTextView.setText(String.format(Locale.US, "%d", viewStateModel.getCount()));
         buttonSecondStep.setEnabled(true);
-        balanceView.updateBalance();
     }
 
     private void showError() {
