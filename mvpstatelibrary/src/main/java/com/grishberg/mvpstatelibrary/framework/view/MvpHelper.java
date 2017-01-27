@@ -55,8 +55,10 @@ public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver 
         presenter.unSubscribe(tagHolder);
         if (parent.isFinishing()) {
             Log.d(TAG, "onPause: is finishing");
+            parent.unRegisterObserver(this);
             MvpDelegate.removePresenter(getDelegateTag());
         }
+        parent = null;
     }
 
     @Override
@@ -64,8 +66,10 @@ public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver 
         Log.d(TAG, "onDestroy: ");
         if (parent.isFinishing()) {
             Log.d(TAG, "onDestroy: is finishing");
+            parent.unRegisterObserver(this);
             MvpDelegate.removePresenter(getDelegateTag());
         }
+        parent = null;
     }
 
     @Override
