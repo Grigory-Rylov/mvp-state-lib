@@ -1,6 +1,7 @@
 package com.grishberg.mviexample.mvp.models;
 
 import com.grishberg.datafacade.ArrayListResult;
+import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
 import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
 import com.grishberg.mviexample.utils.ThreadUtils;
@@ -17,13 +18,8 @@ import rx.schedulers.Schedulers;
  */
 public class SecondModel {
     public static final int TIMEOUT = 500;
-    private StateReceiver<SecondPresenterStateModel> presenter;
 
-    public void setPresenter(StateReceiver<SecondPresenterStateModel> presenter) {
-        this.presenter = presenter;
-    }
-
-    public void requestData() {
+    public void requestData(final StateReceiver<MvpState> callback) {
         final Observable<SecondPresenterStateModel> screenValuesObservable = Observable.create(subscriber -> {
             // emulating long routine
             final ArrayList<String> list = new ArrayList<>();
@@ -37,6 +33,6 @@ public class SecondModel {
         screenValuesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> presenter.updateState(response));
+                .subscribe(response -> callback.updateState(response));
     }
 }

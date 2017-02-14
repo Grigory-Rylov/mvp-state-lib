@@ -1,5 +1,6 @@
 package com.grishberg.mviexample.mvp.models;
 
+import com.grishberg.mviexample.mvp.state.model.FirstModelState;
 import com.grishberg.mvpstatelibrary.framework.state.StateReceiver;
 import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
 import com.grishberg.mviexample.utils.ThreadUtils;
@@ -13,18 +14,15 @@ import rx.schedulers.Schedulers;
  */
 public class FirstModel {
     public static final int TIMEOUT = 5000;
-    private StateReceiver<FirstPresenterStateModel> presenter;
 
-    public void setPresenter(final StateReceiver<FirstPresenterStateModel> presenter) {
-        this.presenter = presenter;
+    public void setPresenter() {
     }
 
-    public void getData() {
+    public void getData(final StateReceiver presenter) {
         // извлечь данные из сети
-        final Observable<FirstPresenterStateModel> screenValuesObservable = Observable.create(subscriber -> {
+        final Observable<FirstModelState> screenValuesObservable = Observable.create(subscriber -> {
             ThreadUtils.pause(TIMEOUT);
-            subscriber.onNext(FirstPresenterStateModel
-                    .makeResponse("title 1", "desctiption", 777));
+            subscriber.onNext(FirstModelState.makeResponse("title 1", "desctiption", 777));
             subscriber.onCompleted();
         });
         screenValuesObservable

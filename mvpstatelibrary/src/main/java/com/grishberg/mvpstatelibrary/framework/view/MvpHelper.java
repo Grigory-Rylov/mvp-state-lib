@@ -2,6 +2,7 @@ package com.grishberg.mvpstatelibrary.framework.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.grishberg.mvpstatelibrary.framework.MvpDelegate;
@@ -15,6 +16,7 @@ import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
  */
 public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver {
     private static final String TAG = MvpHelper.class.getSimpleName();
+    @Nullable
     private LifeCycleObservable parent;
     private P presenter;
     private final DelegateTagHolder tagHolder;
@@ -31,7 +33,7 @@ public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver 
         MvpDelegate.putPresenter(getDelegateTag(), presenter);
     }
 
-    public void registerNestedView(final LifeCycleObservable parent, Bundle savedInstanceState) {
+    public void registerNestedView(@NonNull final LifeCycleObservable parent, Bundle savedInstanceState) {
         this.parent = parent;
         parent.registerObserver(this);
 
@@ -53,7 +55,7 @@ public class MvpHelper<P extends BaseMvpPresenter> implements LifeCycleObserver 
     public void onPause() {
         Log.d(TAG, "onPause: ");
         presenter.unSubscribe(tagHolder);
-        if (parent.isFinishing()) {
+        if (parent != null && parent.isFinishing()) {
             Log.d(TAG, "onPause: is finishing");
             parent.unRegisterObserver(this);
             MvpDelegate.removePresenter(getDelegateTag());

@@ -13,14 +13,14 @@ import java.util.HashSet;
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
-        implements StateReceiver<PS> {
+public abstract class BaseMvpPresenter<VS extends MvpState>
+        implements StateReceiver<MvpState> {
     private static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
     private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
     final HashSet<StateObserver<VS>> observers = new HashSet<>();
 
     private VS viewState;
-    private PS presenterState;
+    private MvpState presenterState;
 
     protected void updateViewState(VS viewState) {
         this.viewState = viewState;
@@ -54,7 +54,7 @@ public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
             viewState = restoreViewState(savedInstanceState);
         }
         if (presenterState == null) {
-            final PS restoredState = restorePresenterState(savedInstanceState);
+            final MvpState restoredState = restorePresenterState(savedInstanceState);
             if (restoredState != null) {
                 updateState(restoredState);
             }
@@ -72,11 +72,11 @@ public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
         return (VS) savedInstanceState.getSerializable(this.getClass().getName() + VIEW_STATE_SUFFIX);
     }
 
-    private PS restorePresenterState(@Nullable final Bundle savedInstanceState) {
+    private MvpState restorePresenterState(@Nullable final Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             return null;
         }
-        return (PS) savedInstanceState.getSerializable(this.getClass().getName() + PRESENTER_STATE_SUFFIX);
+        return (MvpState) savedInstanceState.getSerializable(this.getClass().getName() + PRESENTER_STATE_SUFFIX);
     }
 
     public void saveInstanceState(final Bundle savedInstanceState) {
@@ -87,10 +87,10 @@ public abstract class BaseMvpPresenter<VS extends MvpState, PS extends MvpState>
     }
 
     @Override
-    public void updateState(final PS presenterState) {
+    public void updateState(final MvpState presenterState) {
         this.presenterState = presenterState;
         onStateUpdated(this.presenterState);
     }
 
-    protected abstract void onStateUpdated(PS presenterState);
+    protected abstract void onStateUpdated(MvpState presenterState);
 }
