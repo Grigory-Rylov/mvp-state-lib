@@ -6,7 +6,6 @@ import com.grishberg.mvpstatelibrary.framework.state.MvpState;
  * Created by grishberg on 26.01.17.
  */
 public class BalancePresenterState implements MvpState {
-    private static final String TAG = BalancePresenterState.class.getSimpleName();
 
     public enum State {
         REQUEST,
