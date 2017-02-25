@@ -48,7 +48,7 @@ dependencies {
     compile "com.android.support:support-v4:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
     compile "com.android.support:design:$support_version"
-    compile project(':mvpstatelibrary')
+    compile project(':yet-another-mvvm-lib')
     compile project(':datafacade')
 
     compile 'com.android.support:support-v4:25.1.0'

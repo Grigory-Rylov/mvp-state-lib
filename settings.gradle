@@ -1,1 +1,1 @@
-include ':app', ':datafacade', ':mvpstatelibrary'
+include ':app', ':datafacade', ':yet-another-mvvm-lib'
