@@ -8,3 +8,5 @@ without manual storing state to Bundle (I tell you a secret: library do it autom
 View has single public method - onUpdateState() - it received events from presenter.
 Events implements MvpState interface - that is marker interface, inherited from Serializable.
 Your State-models must implements MvpState and its fields must implements Serializable.
+
+Add compile "com.grishberg:yet-another-mvvm-lib:0.1.0" to your build.gradle in app's folder
