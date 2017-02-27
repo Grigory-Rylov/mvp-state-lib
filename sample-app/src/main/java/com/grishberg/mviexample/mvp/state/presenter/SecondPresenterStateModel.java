@@ -1,0 +1,43 @@
+package com.grishberg.mviexample.mvp.state.presenter;
+
+import com.grishberg.mvpstatelibrary.framework.state.MvpState;
+
+import java.util.List;
+
+/**
+ * Created by grishberg on 23.01.17.
+ */
+public class SecondPresenterStateModel implements MvpState {
+    public enum State {
+        BUTTON_CLICKED,
+        RESPONSE_RECEIVED
+    }
+
+    private State state;
+
+    private transient List<String> values;
+
+    private SecondPresenterStateModel() {
+    }
+
+    public static SecondPresenterStateModel makeFromClick() {
+        SecondPresenterStateModel state = new SecondPresenterStateModel();
+        state.state = State.BUTTON_CLICKED;
+        return state;
+    }
+
+    public static SecondPresenterStateModel makeFromResponse(final List<String> values) {
+        SecondPresenterStateModel state = new SecondPresenterStateModel();
+        state.state = State.RESPONSE_RECEIVED;
+        state.values = values;
+        return state;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public List<String> getValues() {
+        return values;
+    }
+}
