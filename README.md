@@ -11,7 +11,7 @@ Your State-models must implements MvpState and its fields must implements Serial
 
 ### Download
 
-Download grab via Gradle:
+Grab via Gradle:
 ```groovy
 compile 'com.github.grigory-rylov:yet-another-mvp-lib:0.1.0'
 ```
