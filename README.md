@@ -13,7 +13,7 @@ Your State-models must implements MvpState and its fields must implements Serial
 
 Grab via Gradle:
 ```groovy
-compile 'com.github.grigory-rylov:yet-another-mvp-lib:0.1.0'
+compile 'com.github.grigory-rylov:yet-another-mvp-lib:0.1.1'
 ```
 
 License
