@@ -1,11 +1,9 @@
 package com.grishberg.mviexample.mvp.presenters;
 
-import com.grishberg.mviexample.mvp.state.presenter.BalancePresenterState;
-import com.grishberg.mviexample.mvp.state.view.BalanceViewState;
+import com.grishberg.mviexample.mvp.state.balance.BalancePresenterState;
+import com.grishberg.mviexample.mvp.state.balance.BalanceViewState;
 import com.grishberg.mvpstatelibrary.framework.presenter.BaseMvpPresenter;
 import com.grishberg.mvpstatelibrary.framework.state.MvpState;
-
-import static com.grishberg.mviexample.mvp.state.presenter.BalancePresenterState.State.REQUEST;
 
 /**
  * Created by grishberg on 26.01.17.
@@ -13,12 +11,9 @@ import static com.grishberg.mviexample.mvp.state.presenter.BalancePresenterState
 public class BalanceViewPresenter extends BaseMvpPresenter<BalanceViewState> {
 
     @Override
-    protected void onStateUpdated(MvpState presenterState) {
-        if (!(presenterState instanceof BalancePresenterState)) {
-            return;
-        }
-        if (((BalancePresenterState) presenterState).getState() == REQUEST) {
-            updateViewState(new BalanceViewState().setBalance("1000 $"));
+    protected void onStateUpdated(MvpState state) {
+        if (state instanceof BalancePresenterState.RequestState) {
+            updateViewState(new BalanceViewState.UpdateBalanceState("1000 $"));
         }
     }
 }

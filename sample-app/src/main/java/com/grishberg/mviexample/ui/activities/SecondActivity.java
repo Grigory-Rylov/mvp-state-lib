@@ -11,20 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grishberg.mviexample.R;
+import com.grishberg.mviexample.mvp.presenters.SecondScreenPresenter;
+import com.grishberg.mviexample.mvp.state.second.SecondPresenterState;
+import com.grishberg.mviexample.mvp.state.second.SecondViewState;
+import com.grishberg.mviexample.mvp.state.second.SecondViewState.NewValuesState;
+import com.grishberg.mviexample.mvp.state.second.SecondViewState.ProgressState;
 import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
-import com.grishberg.mviexample.mvp.presenters.SecondScreenPresenter;
-import com.grishberg.mviexample.mvp.state.presenter.SecondPresenterStateModel;
-import com.grishberg.mviexample.mvp.state.view.SecondViewStateModel;
 
 import java.util.List;
 import java.util.Locale;
 
 public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter> {
-
     private ProgressBar progressBar;
     private TextView resultTextView;
-    private List<String> values;
 
     public static void start(final Context context) {
         context.startActivity(new Intent(context, SecondActivity.class));
@@ -50,7 +50,7 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter> {
     private void initButtonHandlers() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view ->
-                getPresenter().updateState(SecondPresenterStateModel.makeFromClick())
+                getPresenter().updateState(new SecondPresenterState.RequestState())
         );
     }
 
@@ -61,23 +61,21 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter> {
 
     @Override
     public void onModelUpdated(final MvpState state) {
-        if (!(state instanceof SecondViewStateModel)) {
-            return;
-        }
-        SecondViewStateModel viewStateModel = (SecondViewStateModel) state;
-        if (viewStateModel.isError()) {
+        if (state instanceof NewValuesState) {
+            updateNewValues((NewValuesState) state);
+        } else if (state instanceof ProgressState) {
+            switchProgress((ProgressState) state);
+        } else if (state instanceof SecondViewState.ErrorState) {
             showError();
-            return;
         }
+    }
 
-        progressBar.setVisibility(viewStateModel.isProgress() ? View.VISIBLE : View.GONE);
+    private void switchProgress(ProgressState state) {
+        progressBar.setVisibility(state.isProgress() ? View.VISIBLE : View.GONE);
+    }
 
-        if (viewStateModel.isProgress()) {
-            return;
-        }
-        // update values for result
-        this.values = viewStateModel.getValues();
-        resultTextView.setText(String.format(Locale.US, "%d", values.size()));
+    private void updateNewValues(NewValuesState state) {
+        resultTextView.setText(String.format(Locale.US, "%d", state.getValues().size()));
     }
 
     private void showError() {

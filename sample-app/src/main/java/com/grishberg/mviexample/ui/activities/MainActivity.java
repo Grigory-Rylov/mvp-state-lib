@@ -8,12 +8,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grishberg.mviexample.R;
+import com.grishberg.mviexample.mvp.presenters.FirstScreenPresenter;
+import com.grishberg.mviexample.mvp.state.first.FirstPresenterStateModel.RequestState;
+import com.grishberg.mviexample.mvp.state.first.FirstViewStateModel.ErrorState;
+import com.grishberg.mviexample.mvp.state.first.FirstViewStateModel.ProgressState;
+import com.grishberg.mviexample.mvp.state.first.FirstViewStateModel.SuccessState;
 import com.grishberg.mviexample.ui.view.BalanceView;
 import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 import com.grishberg.mvpstatelibrary.framework.ui.BaseMvpActivity;
-import com.grishberg.mviexample.mvp.presenters.FirstScreenPresenter;
-import com.grishberg.mviexample.mvp.state.presenter.FirstPresenterStateModel;
-import com.grishberg.mviexample.mvp.state.view.FirstViewStateModel;
 
 import java.util.Locale;
 
@@ -22,7 +24,6 @@ import java.util.Locale;
  */
 public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
         implements View.OnClickListener {
-
     private ProgressBar progressBar;
     private TextView titleTextView;
     private TextView descriptionTextView;
@@ -72,32 +73,32 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
      */
     @Override
     public void onModelUpdated(final MvpState state) {
-        if (!(state instanceof FirstViewStateModel)) {
-            return;
-        }
-        FirstViewStateModel viewStateModel = (FirstViewStateModel) state;
-        buttonStart.setEnabled(false);
-        buttonSecondStep.setEnabled(false);
-        if (viewStateModel.isError()) {
-            buttonStart.setEnabled(true);
+        if (state instanceof SuccessState) {
+            updateValues((SuccessState) state);
+        } else if (state instanceof ErrorState) {
             showError();
-            return;
+        } else if (state instanceof ProgressState) {
+            showProgress((ProgressState) state);
         }
+    }
 
-        progressBar.setVisibility(viewStateModel.isProgress() ? View.VISIBLE : View.GONE);
-
-        if (viewStateModel.isProgress()) {
-            // if isProgress than no data for show
-            return;
+    private void showProgress(ProgressState state) {
+        progressBar.setVisibility(state.isProgress() ? View.VISIBLE : View.GONE);
+        if (state.isProgress()) {
+            buttonStart.setEnabled(false);
+            buttonSecondStep.setEnabled(false);
         }
-        // update views for response
-        titleTextView.setText(viewStateModel.getTitle());
-        descriptionTextView.setText(viewStateModel.getDescription());
-        countTextView.setText(String.format(Locale.US, "%d", viewStateModel.getCount()));
+    }
+
+    private void updateValues(SuccessState state) {
+        titleTextView.setText(state.getTitle());
+        descriptionTextView.setText(state.getDescription());
+        countTextView.setText(String.format(Locale.US, "%d", state.getCount()));
         buttonSecondStep.setEnabled(true);
     }
 
     private void showError() {
+        buttonStart.setEnabled(true);
         Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
     }
 
@@ -105,7 +106,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonStart:
-                getPresenter().updateState(FirstPresenterStateModel.makeClick());
+                getPresenter().updateState(new RequestState());
                 break;
 
             case R.id.buttonSecondStep:
