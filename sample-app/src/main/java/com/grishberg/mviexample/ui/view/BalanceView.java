@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.grishberg.mviexample.R;
 import com.grishberg.mviexample.mvp.presenters.BalanceViewPresenter;
-import com.grishberg.mviexample.mvp.state.presenter.BalancePresenterState;
-import com.grishberg.mviexample.mvp.state.view.BalanceViewState;
+import com.grishberg.mviexample.mvp.state.balance.BalancePresenterState;
+import com.grishberg.mviexample.mvp.state.balance.BalanceViewState.UpdateBalanceState;
 import com.grishberg.mvpstatelibrary.framework.state.MvpState;
 import com.grishberg.mvpstatelibrary.framework.view.MvpLinearLayout;
 
@@ -27,13 +27,19 @@ public class BalanceView extends MvpLinearLayout<BalanceViewPresenter> {
         View rootView = inflate(context, R.layout.view_custom_balance, this);
         balanceTextView = (TextView) rootView.findViewById(R.id.custom_box_text);
 
-        getPresenter().updateState(BalancePresenterState.makeRequest());
+        getPresenter().updateState(new BalancePresenterState.RequestState());
     }
 
     @Override
     public void onModelUpdated(final MvpState state) {
         Log.d(TAG, "onModelUpdated: " + state);
-        balanceTextView.setText(((BalanceViewState) state).getBalance());
+        if(state instanceof UpdateBalanceState) {
+            updateBalance((UpdateBalanceState) state);
+        }
+    }
+
+    private void updateBalance(UpdateBalanceState state) {
+        balanceTextView.setText(state.getBalance());
     }
 
     @Override
