@@ -1,5 +1,6 @@
 package com.grishberg.mvpstatelibrary.framework.ui;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -42,11 +43,9 @@ public abstract class BaseMvpDialogFragment<P extends BaseMvpPresenter> extends 
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (getActivity().isFinishing()) {
-            MvpDelegate.removePresenter(getFragmentTag());
-        }
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        MvpDelegate.removePresenter(getFragmentTag());
     }
 
     @Override

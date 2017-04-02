@@ -87,6 +87,9 @@ public abstract class BaseMvpPresenter<VIEW_STATE extends MvpState>
         }
     }
 
+    public void onDestroy() {
+    }
+
     @Override
     public void updateState(final MvpState presenterState) {
         if (!(presenterState instanceof SingleMvpState)) {

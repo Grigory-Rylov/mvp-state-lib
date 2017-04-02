@@ -36,6 +36,10 @@ public class MvpDelegate {
     }
 
     public static void removePresenter(final String tag) {
+        BaseMvpPresenter presenter = presenterMap.get(tag);
+        if (presenter != null) {
+            presenter.onDestroy();
+        }
         presenterMap.remove(tag);
     }
 }
