@@ -43,11 +43,13 @@ public abstract class BaseMvpDialogFragment<P extends BaseMvpPresenter> extends 
     }
 
     @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        MvpDelegate.removePresenter(getFragmentTag());
+    public void onDestroy() {
+        super.onDestroy();
+        if (getActivity().isFinishing()) {
+            MvpDelegate.removePresenter(getFragmentTag());
+        }
     }
-
+    
     @Override
     public void onResume() {
         super.onResume();
