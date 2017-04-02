@@ -39,4 +39,5 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 }
+//need to call  ./gradlew clean build generateReleas
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
