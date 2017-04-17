@@ -1,9 +1,9 @@
-package com.grishberg.datafacade.adapters;
+package com.github.datafacade.adapters;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.grishberg.datafacade.ListResultCloseable;
-import com.grishberg.datafacade.viewholder.BaseViewHolder;
+import com.github.datafacade.ListResultCloseable;
+import com.github.datafacade.viewholder.BaseViewHolder;
 
 import java.io.IOException;
 

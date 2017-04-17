@@ -1,4 +1,4 @@
-package com.grishberg.datafacade.helpers;
+package com.github.datafacade.helpers;
 
 /**
  * Created by grishberg on 01.01.17.

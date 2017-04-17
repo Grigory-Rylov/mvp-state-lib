@@ -1,1 +1,1 @@
-include ':sample-app', ':yet-another-mvp-lib'
+include ':sample-app', ':mvp-state-lib'

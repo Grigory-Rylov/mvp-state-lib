@@ -1,4 +1,4 @@
-package com.grishberg.datafacade;
+package com.github.datafacade;
 
 /**
  * Created by grishberg on 01.01.17.

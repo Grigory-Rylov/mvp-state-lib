@@ -1,4 +1,4 @@
-package com.grishberg.datafacade;
+package com.github.datafacade;
 
 import java.io.Closeable;
 import java.util.List;

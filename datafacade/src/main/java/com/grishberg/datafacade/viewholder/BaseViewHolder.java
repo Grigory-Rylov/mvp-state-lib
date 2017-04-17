@@ -1,9 +1,9 @@
-package com.grishberg.datafacade.viewholder;
+package com.github.datafacade.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.grishberg.datafacade.OnItemSelectedListener;
+import com.github.datafacade.OnItemSelectedListener;
 
 /**
  * Created by grishberg on 31.12.16.

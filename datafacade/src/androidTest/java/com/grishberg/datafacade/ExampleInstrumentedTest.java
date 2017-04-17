@@ -1,4 +1,4 @@
-package com.grishberg.datafacade;
+package com.github.datafacade;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

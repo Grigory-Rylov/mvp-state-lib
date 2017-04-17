@@ -28,7 +28,6 @@ android {
 dependencies {
     String support_version = "25.2.0"
     String rx_version = "1.2.1"
-    String dagger_version = "2.4"
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -39,7 +38,7 @@ dependencies {
     compile "com.android.support:support-v4:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
     compile "com.android.support:design:$support_version"
-    compile project(':yet-another-mvp-lib')
+    compile project(':mvp-state-lib')
 
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'junit:junit:4.12'
