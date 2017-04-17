@@ -1,4 +1,4 @@
-# yet-another-mvp-lib
+# mvp-state-lib
 Yet another MVP library for android
 
 The Library helps forget about android view-life cycle.
@@ -13,7 +13,7 @@ Your State-models must implements MvpState and its fields must implements Serial
 
 Grab via Gradle:
 ```groovy
-compile 'com.github.grigory-rylov:yet-another-mvp-lib:0.1.1'
+compile 'com.github.mvplib:mvp-state-lib:0.1.4'
 ```
 
 License
