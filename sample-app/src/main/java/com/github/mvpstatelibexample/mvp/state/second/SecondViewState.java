@@ -10,8 +10,8 @@ import java.util.List;
  *
  * @author g
  */
-public abstract class SecondViewState implements MvpState {
-    public static class NewValuesState extends SecondViewState implements ModelWithNonSerializable<List<String>> {
+public interface SecondViewState extends MvpState {
+    class NewValuesState implements SecondViewState , ModelWithNonSerializable {
         private final transient List<String> values;
 
         public NewValuesState(List<String> values) {
@@ -23,17 +23,12 @@ public abstract class SecondViewState implements MvpState {
             return values == null;
         }
 
-        @Override
-        public void setNonSerializableValue(List<String> value) {
-            //TODO: remove
-        }
-
         public List<String> getValues() {
             return values;
         }
     }
 
-    public static class ProgressState extends SecondViewState {
+    class ProgressState implements SecondViewState {
         private final boolean isProgress;
 
         public ProgressState(boolean isProgress) {
@@ -45,6 +40,6 @@ public abstract class SecondViewState implements MvpState {
         }
     }
 
-    public static class ErrorState extends SecondViewState {
+    class ErrorState implements SecondViewState {
     }
 }

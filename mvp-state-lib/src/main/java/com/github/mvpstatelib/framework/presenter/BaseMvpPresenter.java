@@ -44,10 +44,20 @@ public abstract class BaseMvpPresenter<VIEW_STATE extends MvpState>
             }
             stateObserver.onModelUpdated(viewState);
         }
+        onSubscribed();
+    }
+
+    protected void onSubscribed() {
+        //to be overridden in subclass
     }
 
     public void unSubscribe(final StateObserver<VIEW_STATE> stateObserver) {
         observers.remove(stateObserver);
+        onUnsubscribed();
+    }
+
+    protected void onUnsubscribed() {
+        //to be overridden in subclass
     }
 
     public void restoreState(@Nullable Bundle savedInstanceState) {
@@ -98,5 +108,7 @@ public abstract class BaseMvpPresenter<VIEW_STATE extends MvpState>
         onStateUpdated(this.presenterState);
     }
 
-    protected abstract void onStateUpdated(MvpState presenterState);
+    protected void onStateUpdated(MvpState presenterState) {
+        //to be overridden in subclass
+    }
 }
