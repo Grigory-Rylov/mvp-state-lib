@@ -3,7 +3,6 @@ package com.github.mvpstatelibexample.mvp.presenters;
 import com.github.mvpstatelibexample.mvp.models.FirstModel;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.RequestState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.ResponseState;
-import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.ProgressState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.SuccessState;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
@@ -12,7 +11,7 @@ import com.github.mvpstatelib.framework.state.MvpState;
 /**
  * Created by grishberg on 23.01.17.
  */
-public class FirstScreenPresenter extends BaseMvpPresenter<FirstViewStateModel> {
+public class FirstScreenPresenter extends BaseMvpPresenter {
     private FirstModel model;
 
     public FirstScreenPresenter() {

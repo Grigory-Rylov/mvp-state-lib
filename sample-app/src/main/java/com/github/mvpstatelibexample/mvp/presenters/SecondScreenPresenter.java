@@ -11,7 +11,7 @@ import com.github.mvpstatelib.framework.state.MvpState;
 /**
  * Created by grishberg on 23.01.17.
  */
-public class SecondScreenPresenter extends BaseMvpPresenter<SecondViewState> {
+public class SecondScreenPresenter extends BaseMvpPresenter {
     private SecondModel model;
 
     public SecondScreenPresenter() {
@@ -47,7 +47,7 @@ public class SecondScreenPresenter extends BaseMvpPresenter<SecondViewState> {
     }
 
     @Override
-    protected void onNonSerializableEmpty(SecondViewState secondViewState) {
+    protected void onNonSerializableEmpty(MvpState secondViewState) {
         if (secondViewState instanceof SecondViewState.NewValuesState) {
             requestDataFromModel();
         }

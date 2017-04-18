@@ -8,7 +8,7 @@ import com.github.mvpstatelib.framework.state.MvpState;
 /**
  * Created by grishberg on 26.01.17.
  */
-public class BalanceViewPresenter extends BaseMvpPresenter<BalanceViewState> {
+public class BalanceViewPresenter extends BaseMvpPresenter{
 
     @Override
     protected void onStateUpdated(MvpState state) {

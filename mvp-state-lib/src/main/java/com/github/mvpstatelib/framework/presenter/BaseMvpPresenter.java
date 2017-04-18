@@ -14,28 +14,28 @@ import java.util.HashSet;
 /**
  * Created by grishberg on 22.01.17.
  */
-public abstract class BaseMvpPresenter<VIEW_STATE extends MvpState>
+public abstract class BaseMvpPresenter
         implements StateReceiver<MvpState> {
     private static final String VIEW_STATE_SUFFIX = ":VIEW_STATE";
     private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
-    final HashSet<StateObserver<VIEW_STATE>> observers = new HashSet<>();
+    final HashSet<StateObserver<MvpState>> observers = new HashSet<>();
 
-    private VIEW_STATE viewState;
+    private MvpState viewState;
     private MvpState presenterState;
 
-    protected void updateViewState(VIEW_STATE viewState) {
+    protected void updateViewState(MvpState viewState) {
         this.viewState = viewState;
 
         notifyObservers();
     }
 
     private void notifyObservers() {
-        for (StateObserver<VIEW_STATE> observer : observers) {
+        for (StateObserver<MvpState> observer : observers) {
             observer.onModelUpdated(viewState);
         }
     }
 
-    public void subscribe(final StateObserver<VIEW_STATE> stateObserver) {
+    public void subscribe(final StateObserver<MvpState> stateObserver) {
         if (observers.add(stateObserver) && viewState != null) {
             if (viewState instanceof ModelWithNonSerializable &&
                     ((ModelWithNonSerializable) viewState).isNonSerializableNull()) {
@@ -51,7 +51,7 @@ public abstract class BaseMvpPresenter<VIEW_STATE extends MvpState>
         //to be overridden in subclass
     }
 
-    public void unSubscribe(final StateObserver<VIEW_STATE> stateObserver) {
+    public void unSubscribe(final StateObserver<MvpState> stateObserver) {
         observers.remove(stateObserver);
         onUnsubscribed();
     }
@@ -72,15 +72,15 @@ public abstract class BaseMvpPresenter<VIEW_STATE extends MvpState>
         }
     }
 
-    protected void onNonSerializableEmpty(VIEW_STATE viewState) {
+    protected void onNonSerializableEmpty(MvpState viewState) {
         //To be overriden in subclass
     }
 
-    private VIEW_STATE restoreViewState(@Nullable final Bundle savedInstanceState) {
+    private MvpState restoreViewState(@Nullable final Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             return null;
         }
-        return (VIEW_STATE) savedInstanceState.getSerializable(this.getClass().getName() + VIEW_STATE_SUFFIX);
+        return (MvpState) savedInstanceState.getSerializable(this.getClass().getName() + VIEW_STATE_SUFFIX);
     }
 
     private MvpState restorePresenterState(@Nullable final Bundle savedInstanceState) {
