@@ -42,4 +42,8 @@ public class MvpDelegate {
         }
         presenterMap.remove(tag);
     }
+    
+    public static void resetPresenters() {
+        presenterMap.clear();
+    }
 }
