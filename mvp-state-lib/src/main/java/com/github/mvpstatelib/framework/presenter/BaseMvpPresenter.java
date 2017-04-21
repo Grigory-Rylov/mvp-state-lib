@@ -33,6 +33,9 @@ public abstract class BaseMvpPresenter
         for (StateObserver<MvpState> observer : observers) {
             observer.onModelUpdated(viewState);
         }
+        if (viewState instanceof SingleMvpState) {
+            ((SingleMvpState) viewState).setDefaultState();
+        }
     }
 
     public void subscribe(final StateObserver<MvpState> stateObserver) {
