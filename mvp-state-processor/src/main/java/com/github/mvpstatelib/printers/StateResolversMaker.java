@@ -18,13 +18,8 @@ import javax.tools.JavaFileObject;
 public class StateResolversMaker {
     private static final String FRAMEWORK_PACKAGE = "com.github.mvpstatelib.framework";
     private static final String DOT = ".";
-    private final ProcessingEnvironment processingEnvironment;
 
-    public StateResolversMaker(ProcessingEnvironment processingEnv) {
-        processingEnvironment = processingEnv;
-    }
-
-    public void makeClasses(HashMap<String, ClassInfoHolder> classes) {
+    public void makeClasses(ProcessingEnvironment processingEnv, HashMap<String, ClassInfoHolder> classes) {
         for (Map.Entry<String, ClassInfoHolder> entry : classes.entrySet()) {
             if (entry.getValue() == null) {
                 continue;
@@ -45,7 +40,7 @@ public class StateResolversMaker {
             builder.append("\n\t}\n") // close method
                     .append("}\n"); // close class
 
-            generateJavaClass(entry.getValue().getPackageName(), generatedClassName, builder);
+            generateJavaClass(processingEnv, entry.getValue().getPackageName(), generatedClassName, builder);
         }
     }
 
@@ -83,9 +78,10 @@ public class StateResolversMaker {
     private StringBuilder makeCheckingInstanceOf(StringBuilder builder, ClassInfoHolder classInfoHolder) {
         boolean isFirstArg = true;
         for (ArgumentHolder argument : classInfoHolder.getArgumentsList()) {
-            builder.append("\t\t");
             if (!isFirstArg) {
                 builder.append(" else ");
+            } else {
+                builder.append("\t\t");
             }
             builder.append("if(state instanceof ")
                     .append(argument.getArgType())
@@ -100,11 +96,12 @@ public class StateResolversMaker {
         return builder;
     }
 
-    private void generateJavaClass(String originalPackageName,
+    private void generateJavaClass(ProcessingEnvironment processingEnv,
+                                   String originalPackageName,
                                    String className,
                                    StringBuilder builder) {
         try { // write the file
-            JavaFileObject source = processingEnvironment.getFiler()
+            JavaFileObject source = processingEnv.getFiler()
                     .createSourceFile(originalPackageName + "." + className);
 
             Writer writer = source.openWriter();

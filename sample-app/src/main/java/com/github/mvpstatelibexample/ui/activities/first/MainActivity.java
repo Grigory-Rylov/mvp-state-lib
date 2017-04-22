@@ -76,13 +76,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
      */
     @Override
     public void onStateUpdated(final MvpState state) {
-        if (state instanceof SuccessState) {
-            updateValues((SuccessState) state);
-        } else if (state instanceof ErrorState) {
-            showError();
-        } else if (state instanceof ProgressState) {
-            showProgress((ProgressState) state);
-        }
+        GeneratedMainActivitySubscriber.processState(this, state);
     }
 
     @SubscribeState
@@ -103,7 +97,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
     }
 
     @SubscribeState
-    void showError() {
+    void showError(ErrorState state) {
         buttonStart.setEnabled(true);
         Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
     }
