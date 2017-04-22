@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.mvp.presenters.SecondScreenPresenter;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState;
@@ -60,24 +61,21 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter> {
 
     @Override
     public void onStateUpdated(final MvpState state) {
-        if (state instanceof NewValuesState) {
-            updateNewValues((NewValuesState) state);
-        } else if (state instanceof ProgressState) {
-            switchProgress((ProgressState) state);
-        } else if (state instanceof SecondViewState.ErrorState) {
-            showError();
-        }
+        GeneratedSecondActivitySubscriber.processState(this, state);
     }
 
-    private void switchProgress(ProgressState state) {
+    @SubscribeState
+    void switchProgress(ProgressState state) {
         progressBar.setVisibility(state.isProgress() ? View.VISIBLE : View.GONE);
     }
 
-    private void updateNewValues(NewValuesState state) {
+    @SubscribeState
+    void updateNewValues(NewValuesState state) {
         resultTextView.setText(String.format(Locale.US, "%d", state.getValues().size()));
     }
 
-    private void showError() {
+    @SubscribeState
+    void showError(SecondViewState.ErrorState state) {
         Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
     }
 }
