@@ -16,7 +16,7 @@ import rx.schedulers.Schedulers;
  * Created by grishberg on 23.01.17.
  */
 public class SecondModel {
-    public static final int TIMEOUT = 500;
+    private static final int TIMEOUT = 500;
 
     public void requestData(final StateReceiver<MvpState> callback) {
         final Observable<SecondPresenterState.ResponseState> screenValuesObservable = Observable.create(subscriber -> {

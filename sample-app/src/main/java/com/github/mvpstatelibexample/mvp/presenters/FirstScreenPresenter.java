@@ -1,5 +1,6 @@
 package com.github.mvpstatelibexample.mvp.presenters;
 
+import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.mvp.models.first.FirstModel;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.RequestState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.ResponseState;
@@ -25,14 +26,11 @@ public class FirstScreenPresenter extends BaseMvpPresenter {
      */
     @Override
     protected void onStateUpdated(final MvpState state) {
-        if (state instanceof ResponseState) {
-            processResponse((ResponseState) state);
-        } else if (state instanceof RequestState) {
-            processRequest();
-        }
+        GeneratedFirstScreenPresenterSubscriber.processState(this, state);
     }
 
-    private void processRequest() {
+    @SubscribeState
+    void processRequest(RequestState state) {
         updateViewState(new ProgressState(true));
         model.getData(this);
     }
@@ -42,7 +40,8 @@ public class FirstScreenPresenter extends BaseMvpPresenter {
      *
      * @param state - response state
      */
-    private void processResponse(final ResponseState state) {
+    @SubscribeState
+    void processResponse(final ResponseState state) {
         updateViewState(new ProgressState(false));
         updateViewState(new SuccessState(state.getTitle(),
                 state.getDescription(),

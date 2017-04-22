@@ -1,5 +1,6 @@
 package com.github.mvpstatelibexample.mvp.presenters;
 
+import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.mvp.models.second.SecondModel;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState.RequestState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState.ResponseState;
@@ -20,11 +21,7 @@ public class SecondScreenPresenter extends BaseMvpPresenter {
 
     @Override
     protected void onStateUpdated(final MvpState state) {
-        if (state instanceof RequestState) {
-            requestDataFromModel();
-        } else if (state instanceof ResponseState) {
-            processResponse((ResponseState) state);
-        }
+        GeneratedSecondScreenPresenterSubscriber.processState(this, state);
     }
 
     /**
@@ -32,16 +29,18 @@ public class SecondScreenPresenter extends BaseMvpPresenter {
      *
      * @param responseState
      */
-    private void processResponse(final ResponseState responseState) {
+    @SubscribeState
+    void processResponse(final ResponseState responseState) {
         if (responseState.getValues() == null) {
-            requestDataFromModel();
+            requestDataFromModel(null);
             return;
         }
         updateViewState(new ProgressState(false));
         updateViewState(new SecondViewState.NewValuesState(responseState.getValues()));
     }
 
-    private void requestDataFromModel() {
+    @SubscribeState
+    void requestDataFromModel(RequestState state) {
         updateViewState(new ProgressState(true));
         model.requestData(this);
     }
@@ -49,7 +48,7 @@ public class SecondScreenPresenter extends BaseMvpPresenter {
     @Override
     protected void onNonSerializableEmpty(MvpState secondViewState) {
         if (secondViewState instanceof SecondViewState.NewValuesState) {
-            requestDataFromModel();
+            requestDataFromModel(null);
         }
     }
 }
