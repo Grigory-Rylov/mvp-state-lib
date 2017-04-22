@@ -31,8 +31,8 @@ public class BalanceView extends MvpLinearLayout<BalanceViewPresenter> {
     }
 
     @Override
-    public void onModelUpdated(final MvpState state) {
-        Log.d(TAG, "onModelUpdated: " + state);
+    public void onStateUpdated(final MvpState state) {
+        Log.d(TAG, "onStateUpdated: " + state);
         if(state instanceof UpdateBalanceState) {
             updateBalance((UpdateBalanceState) state);
         }

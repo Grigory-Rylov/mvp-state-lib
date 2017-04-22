@@ -59,7 +59,7 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter> {
     }
 
     @Override
-    public void onModelUpdated(MvpState viewStateModel) {
+    public void onStateUpdated(MvpState viewStateModel) {
         //TODO: add some action when state received
     }
 

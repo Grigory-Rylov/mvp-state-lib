@@ -59,7 +59,7 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter> {
     }
 
     @Override
-    public void onModelUpdated(final MvpState state) {
+    public void onStateUpdated(final MvpState state) {
         if (state instanceof NewValuesState) {
             updateNewValues((NewValuesState) state);
         } else if (state instanceof ProgressState) {

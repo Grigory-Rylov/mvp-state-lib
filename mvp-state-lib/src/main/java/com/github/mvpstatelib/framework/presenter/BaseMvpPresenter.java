@@ -36,7 +36,7 @@ public abstract class BaseMvpPresenter
             viewState.beforeStateReceived();
         }
         for (StateObserver<MvpState> observer : observers) {
-            observer.onModelUpdated(viewState);
+            observer.onStateUpdated(viewState);
         }
         if (viewState != null) {
             viewState.afterStateReceived();
@@ -50,7 +50,7 @@ public abstract class BaseMvpPresenter
                 onNonSerializableEmpty(viewState);
                 return;
             }
-            stateObserver.onModelUpdated(viewState);
+            stateObserver.onStateUpdated(viewState);
         }
         onSubscribed();
     }

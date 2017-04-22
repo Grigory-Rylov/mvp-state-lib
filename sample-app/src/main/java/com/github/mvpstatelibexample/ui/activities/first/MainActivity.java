@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.mvp.presenters.FirstScreenPresenter;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.RequestState;
@@ -74,7 +75,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
      * @param state - model with updates from presenter
      */
     @Override
-    public void onModelUpdated(final MvpState state) {
+    public void onStateUpdated(final MvpState state) {
         if (state instanceof SuccessState) {
             updateValues((SuccessState) state);
         } else if (state instanceof ErrorState) {
@@ -84,7 +85,8 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
         }
     }
 
-    private void showProgress(ProgressState state) {
+    @SubscribeState
+    void showProgress(ProgressState state) {
         progressBar.setVisibility(state.isProgress() ? View.VISIBLE : View.GONE);
         if (state.isProgress()) {
             buttonStart.setEnabled(false);
@@ -92,14 +94,16 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
         }
     }
 
-    private void updateValues(SuccessState state) {
+    @SubscribeState
+    void updateValues(SuccessState state) {
         titleTextView.setText(state.getTitle());
         descriptionTextView.setText(state.getDescription());
         countTextView.setText(String.format(Locale.US, "%d", state.getCount()));
         buttonSecondStep.setEnabled(true);
     }
 
-    private void showError() {
+    @SubscribeState
+    void showError() {
         buttonStart.setEnabled(true);
         Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
     }

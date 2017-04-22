@@ -58,7 +58,7 @@ public class SecondFragment extends BaseMvpFragment<SecondFragmentPresenter> {
     }
 
     @Override
-    public void onModelUpdated(MvpState viewStateModel) {
+    public void onStateUpdated(MvpState viewStateModel) {
         //TODO: add some action after received
     }
 

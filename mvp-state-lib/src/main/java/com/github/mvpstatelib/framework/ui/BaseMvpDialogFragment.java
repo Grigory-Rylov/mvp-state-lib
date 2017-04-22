@@ -29,7 +29,7 @@ public abstract class BaseMvpDialogFragment<P extends BaseMvpPresenter> extends 
     }
 
     @Override
-    public void onModelUpdated(MvpState model) {
+    public void onStateUpdated(MvpState model) {
 
     }
 
