@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.ui.view;
+package com.github.mvpstatelibexample.ui.view.first;
 
 import android.content.Context;
 import android.util.AttributeSet;

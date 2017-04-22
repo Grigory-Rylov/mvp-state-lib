@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 
 import com.github.mvpstatelib.framework.state.ModelWithNonSerializable;
 import com.github.mvpstatelib.framework.state.MvpState;
-import com.github.mvpstatelib.framework.state.SingleMvpState;
 import com.github.mvpstatelib.framework.state.StateObserver;
 import com.github.mvpstatelib.framework.state.StateReceiver;
 
@@ -20,21 +19,27 @@ public abstract class BaseMvpPresenter
     private static final String PRESENTER_STATE_SUFFIX = ":PRESENTER_STATE";
     final HashSet<StateObserver<MvpState>> observers = new HashSet<>();
 
+    @Nullable
     private MvpState viewState;
+
+    @Nullable
     private MvpState presenterState;
 
-    protected void updateViewState(MvpState viewState) {
+    protected void updateViewState(@Nullable MvpState viewState) {
         this.viewState = viewState;
 
         notifyObservers();
     }
 
     private void notifyObservers() {
+        if (viewState != null) {
+            viewState.beforeStateReceived();
+        }
         for (StateObserver<MvpState> observer : observers) {
             observer.onModelUpdated(viewState);
         }
-        if (viewState instanceof SingleMvpState) {
-            ((SingleMvpState) viewState).setDefaultState();
+        if (viewState != null) {
+            viewState.afterStateReceived();
         }
     }
 
@@ -105,13 +110,13 @@ public abstract class BaseMvpPresenter
 
     @Override
     public void updateState(final MvpState presenterState) {
-        if (!(presenterState instanceof SingleMvpState)) {
+        if (presenterState != null && presenterState.isNeedToSaveState()) {
             this.presenterState = presenterState;
         }
-        onStateUpdated(this.presenterState);
+        onStateUpdated(presenterState);
     }
 
-    protected void onStateUpdated(MvpState presenterState) {
+    protected void onStateUpdated(final MvpState presenterState) {
         //to be overridden in subclass
     }
 }

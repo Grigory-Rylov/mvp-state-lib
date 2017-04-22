@@ -1,7 +1,6 @@
-package com.github.mvpstatelibexample.ui.fragments;
+package com.github.mvpstatelibexample.ui.fragments.second;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,27 +8,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.mvpstatelibexample.R;
-import com.github.mvpstatelibexample.mvp.presenters.FirstFragmentPresenter;
+import com.github.mvpstatelibexample.mvp.presenters.SecondFragmentPresenter;
 import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.ui.BaseMvpFragment;
+import com.github.mvpstatelibexample.ui.activities.third.FragmentInteractionListener;
 
 import java.util.Locale;
 
-public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter> {
+public class SecondFragment extends BaseMvpFragment<SecondFragmentPresenter> {
     private static final String ARG_POSITION = "argPosition";
 
     private int position;
 
     private FragmentInteractionListener listener;
-    private TextView textView;
 
-    public FirstFragment() {
+    public SecondFragment() {
         // Required empty public constructor
     }
 
-    public static FirstFragment newInstance(final int position) {
-        FirstFragment fragment = new FirstFragment();
-        Bundle args = new Bundle();
+    public static SecondFragment newInstance(final int position) {
+        final SecondFragment fragment = new SecondFragment();
+        final Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
         return fragment;
@@ -47,30 +46,30 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View inflate = inflater.inflate(R.layout.fragment_first, container, false);
-        textView = (TextView) inflate.findViewById(R.id.fragment_first_text);
+        final View inflate = inflater.inflate(R.layout.fragment_second, container, false);
+        TextView textView = (TextView) inflate.findViewById(R.id.fragment_second_text);
         textView.setText(String.format(Locale.US, "%d", position));
         return inflate;
     }
 
     @Override
-    protected FirstFragmentPresenter createPresenter() {
-        return new FirstFragmentPresenter();
+    protected SecondFragmentPresenter createPresenter() {
+        return new SecondFragmentPresenter();
     }
 
     @Override
     public void onModelUpdated(MvpState viewStateModel) {
-
+        //TODO: add some action after received
     }
 
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed() {
         if (listener != null) {
             listener.onFragmentAction();
         }
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(final Context context) {
         super.onAttach(context);
         if (context instanceof FragmentInteractionListener) {
             listener = (FragmentInteractionListener) context;

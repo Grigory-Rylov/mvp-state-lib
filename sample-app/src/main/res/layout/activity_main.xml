@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.mvpstatelibexample.ui.activities.MainActivity">
+    tools:context="com.github.mvpstatelibexample.ui.activities.first.MainActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <com.github.mvpstatelibexample.ui.view.BalanceView
+        <com.github.mvpstatelibexample.ui.view.first.BalanceView
             android:id="@+id/balanceView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

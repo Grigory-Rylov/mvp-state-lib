@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.mvp.models;
+package com.github.mvpstatelibexample.mvp.models.first;
 
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.ResponseState;
 import com.github.mvpstatelib.framework.state.StateReceiver;

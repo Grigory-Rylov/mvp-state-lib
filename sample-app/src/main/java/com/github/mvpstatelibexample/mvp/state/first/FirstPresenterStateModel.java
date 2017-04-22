@@ -1,5 +1,6 @@
 package com.github.mvpstatelibexample.mvp.state.first;
 
+import com.github.mvpstatelib.framework.state.AbsMvpState;
 import com.github.mvpstatelib.framework.state.MvpState;
 
 /**
@@ -7,12 +8,12 @@ import com.github.mvpstatelib.framework.state.MvpState;
  *
  * @author g
  */
-public interface FirstPresenterStateModel extends MvpState {
+public abstract class FirstPresenterStateModel extends AbsMvpState {
 
-    class RequestState implements FirstPresenterStateModel {
+    public static class RequestState extends FirstPresenterStateModel {
     }
 
-    class ResponseState implements FirstPresenterStateModel{
+    public static class ResponseState extends FirstPresenterStateModel{
         private final String title;
         private final String description;
         private final int count;

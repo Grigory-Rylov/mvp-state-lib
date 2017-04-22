@@ -1,7 +1,7 @@
 package com.github.mvpstatelibexample.mvp.state.second;
 
+import com.github.mvpstatelib.framework.state.AbsMvpState;
 import com.github.mvpstatelib.framework.state.ModelWithNonSerializable;
-import com.github.mvpstatelib.framework.state.MvpState;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import java.util.List;
  *
  * @author g
  */
-public interface SecondViewState extends MvpState {
-    class NewValuesState implements SecondViewState , ModelWithNonSerializable {
+public abstract class SecondViewState extends AbsMvpState {
+    public static class NewValuesState extends SecondViewState implements ModelWithNonSerializable {
         private final transient List<String> values;
 
         public NewValuesState(List<String> values) {
@@ -28,7 +28,7 @@ public interface SecondViewState extends MvpState {
         }
     }
 
-    class ProgressState implements SecondViewState {
+    public static class ProgressState extends SecondViewState {
         private final boolean isProgress;
 
         public ProgressState(boolean isProgress) {
@@ -40,6 +40,6 @@ public interface SecondViewState extends MvpState {
         }
     }
 
-    class ErrorState implements SecondViewState {
+    public static class ErrorState extends SecondViewState {
     }
 }

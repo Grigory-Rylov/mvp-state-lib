@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.ui.activities;
+package com.github.mvpstatelibexample.ui.activities.first;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +13,9 @@ import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.Re
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.ErrorState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.ProgressState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.SuccessState;
-import com.github.mvpstatelibexample.ui.view.BalanceView;
+import com.github.mvpstatelibexample.ui.activities.second.SecondActivity;
+import com.github.mvpstatelibexample.ui.activities.third.ThirdActivity;
+import com.github.mvpstatelibexample.ui.view.first.BalanceView;
 import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.ui.BaseMvpActivity;
 

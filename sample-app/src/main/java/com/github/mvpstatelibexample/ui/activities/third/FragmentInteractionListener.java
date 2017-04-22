@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.ui.fragments;
+package com.github.mvpstatelibexample.ui.activities.third;
 
 /**
  * Created by grishberg on 24.01.17.

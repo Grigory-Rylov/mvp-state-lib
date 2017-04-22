@@ -1,14 +1,14 @@
 package com.github.mvpstatelibexample.mvp.state.balance;
 
-import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.AbsMvpState;
 
 /**
  * Created by grishberg on 26.01.17.
  */
-public interface BalancePresenterState extends MvpState {
-    class RequestState implements BalancePresenterState {
+public abstract class BalancePresenterState extends AbsMvpState {
+    public static class RequestState extends BalancePresenterState {
     }
 
-    class ResponseState implements BalancePresenterState {
+    public static class ResponseState extends BalancePresenterState {
     }
 }

@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.github.mvpstatelibexample.ui.fragments.FirstFragment;
-import com.github.mvpstatelibexample.ui.fragments.SecondFragment;
+import com.github.mvpstatelibexample.ui.fragments.first.FirstFragment;
+import com.github.mvpstatelibexample.ui.fragments.second.SecondFragment;
 
 /**
  * Created by grishberg on 24.01.17.

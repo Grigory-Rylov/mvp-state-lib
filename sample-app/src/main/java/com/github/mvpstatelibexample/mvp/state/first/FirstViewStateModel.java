@@ -1,14 +1,14 @@
 package com.github.mvpstatelibexample.mvp.state.first;
 
-import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.AbsMvpState;
 
 /**
  * Created on 08.03.17.
  *
  * @author g
  */
-public interface FirstViewStateModel extends MvpState {
-    class SuccessState implements FirstViewStateModel {
+public abstract class FirstViewStateModel extends AbsMvpState {
+    public static class SuccessState extends FirstViewStateModel {
         private final String title;
         private final String description;
         private final int count;
@@ -32,10 +32,10 @@ public interface FirstViewStateModel extends MvpState {
         }
     }
 
-    class ErrorState implements FirstViewStateModel {
+    public static class ErrorState extends FirstViewStateModel {
     }
 
-    class ProgressState implements FirstViewStateModel {
+    public static class ProgressState extends FirstViewStateModel {
         private final boolean isProgress;
 
         public ProgressState(boolean isProgress) {

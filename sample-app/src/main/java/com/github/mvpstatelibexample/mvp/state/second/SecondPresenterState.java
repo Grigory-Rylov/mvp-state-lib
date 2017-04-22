@@ -1,6 +1,6 @@
 package com.github.mvpstatelibexample.mvp.state.second;
 
-import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.AbsMvpState;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import java.util.List;
  *
  * @author g
  */
-public interface SecondPresenterState extends MvpState {
-    class RequestState implements SecondPresenterState{
+public abstract class SecondPresenterState extends AbsMvpState {
+    public static class RequestState extends SecondPresenterState{
     }
 
-    class ResponseState implements SecondPresenterState{
+    public static class ResponseState extends SecondPresenterState{
         private final List<String> values;
 
         public ResponseState(List<String> values) {

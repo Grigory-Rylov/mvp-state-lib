@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.ui.activities;
+package com.github.mvpstatelibexample.ui.activities.second;
 
 import android.content.Context;
 import android.content.Intent;

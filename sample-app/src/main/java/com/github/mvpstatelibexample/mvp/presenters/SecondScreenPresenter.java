@@ -1,6 +1,6 @@
 package com.github.mvpstatelibexample.mvp.presenters;
 
-import com.github.mvpstatelibexample.mvp.models.SecondModel;
+import com.github.mvpstatelibexample.mvp.models.second.SecondModel;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState.RequestState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState.ResponseState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondViewState;

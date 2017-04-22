@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.ui.activities;
+package com.github.mvpstatelibexample.ui.activities.third;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +13,8 @@ import android.view.View;
 
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.ui.adapters.SamplePagerAdapter;
-import com.github.mvpstatelibexample.ui.fragments.FragmentInteractionListener;
 
 public class ThirdActivity extends AppCompatActivity implements FragmentInteractionListener {
-
-    private PagerAdapter adapter;
-    private ViewPager viewPager;
 
     public static void start(final Context context) {
         final Intent intent = new Intent(context, ThirdActivity.class);
@@ -32,9 +28,9 @@ public class ThirdActivity extends AppCompatActivity implements FragmentInteract
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        viewPager = (ViewPager) findViewById(R.id.activity_third_pager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.activity_third_pager);
 
-        adapter = new SamplePagerAdapter(getSupportFragmentManager());
+        PagerAdapter adapter = new SamplePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -49,6 +45,6 @@ public class ThirdActivity extends AppCompatActivity implements FragmentInteract
 
     @Override
     public void onFragmentAction() {
-
+        //TODO: handle action from fragment
     }
 }

@@ -1,12 +1,12 @@
 package com.github.mvpstatelibexample.mvp.state.balance;
 
-import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.AbsMvpState;
 
 /**
  * Created by grishberg on 26.01.17.
  */
-public interface BalanceViewState extends MvpState {
-    class UpdateBalanceState implements BalanceViewState {
+public abstract class BalanceViewState extends AbsMvpState {
+    public static class UpdateBalanceState extends BalanceViewState {
         private final String balance;
 
         public UpdateBalanceState(String balance) {
