@@ -60,7 +60,13 @@ public class ComplexTaskScreen extends BaseMvpActivity<ComplexTaskPresenter> {
     }
 
     @SubscribeState
+    void onShowProgress(ShowProgressState state) {
+        progressBar.setVisibility(state.isShowProgress() ? View.VISIBLE : View.GONE);
+    }
+
+    @SubscribeState
     void onReceivedResponseFromStepTwo(ComplexTaskDataDownloadingState state) {
+        progressBar.setVisibility(View.GONE);
         if (state.isShowRequest()) {
             showConfirmDialog(state.getProcessedCount());
         }
@@ -86,7 +92,7 @@ public class ComplexTaskScreen extends BaseMvpActivity<ComplexTaskPresenter> {
 
             @Override
             public void onNo() {
-
+                getPresenter().updateState(new ComplexTaskPresenterState.ConfirmSecondStepState(false));
             }
         });
     }
@@ -105,7 +111,8 @@ public class ComplexTaskScreen extends BaseMvpActivity<ComplexTaskPresenter> {
     @SubscribeState
     void onSecondStepStateCompleted(CompleteSecondStepState state) {
         progressBar.setVisibility(View.GONE);
-        Log.d(TAG, "onSeconStepStateCompleted: ");
+        Log.d(TAG, "onSecondStepStateCompleted: starting service...");
+        finish();
     }
 
     @Override

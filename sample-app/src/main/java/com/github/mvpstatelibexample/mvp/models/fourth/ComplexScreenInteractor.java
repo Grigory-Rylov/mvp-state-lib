@@ -40,10 +40,10 @@ public class ComplexScreenInteractor {
 
     public void requestPersistenDataFromRepository(StateReceiver<MvpState> callback) {
         persistentRepository.getPersistentData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(response -> apiService.requestPersistentDataCalculation(response))
                 .flatMap(apiResponse -> Observable.just(new PersistentStoreResponse(apiResponse)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(callback::updateState);
     }
 

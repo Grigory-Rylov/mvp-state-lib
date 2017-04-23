@@ -30,6 +30,7 @@ public class ComplexTaskPresenter extends BaseMvpPresenter {
     @SubscribeState
     void onScreenStarted(ComplexTaskPresenterState.StartScreenState state) {
         interactor.requestPersistenDataFromRepository(this);
+        updateViewState(new ShowProgressState(true));
     }
 
     @SubscribeState
@@ -39,7 +40,11 @@ public class ComplexTaskPresenter extends BaseMvpPresenter {
 
     @SubscribeState
     void onConfirmedStepTwo(ComplexTaskPresenterState.ConfirmSecondStepState state) {
-        interactor.startStepTwo(this);
+        if (state.isConfirmed()) {
+            interactor.startStepTwo(this);
+        } else {
+            updateViewState(null);
+        }
     }
 
     @SubscribeState

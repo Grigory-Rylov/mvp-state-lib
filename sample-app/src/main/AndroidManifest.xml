@@ -27,7 +27,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ui.activities.fourth.ComplexTaskScreen"
-                  android:theme="@style/AppTheme.NoActionBar"
+                  android:label="@string/title_activity_complex_task"
             />
     </application>
 

@@ -12,4 +12,5 @@
     <string name="confirm_dialog_title">Please confirm</string>
     <string name="confirm_dialog_message">Are you sure ? count = %d</string>
     <string name="complex_task_step_update_text">processed = %d</string>
+    <string name="title_activity_complex_task">Complex task screen</string>
 </resources>

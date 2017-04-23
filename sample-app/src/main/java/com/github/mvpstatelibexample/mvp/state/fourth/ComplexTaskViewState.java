@@ -10,6 +10,18 @@ import java.util.List;
  */
 
 public class ComplexTaskViewState extends AbsMvpState {
+    public static class ShowProgressState extends ComplexTaskViewState {
+        private final boolean showProgress;
+
+        public ShowProgressState(boolean showProgress) {
+            this.showProgress = showProgress;
+        }
+
+        public boolean isShowProgress() {
+            return showProgress;
+        }
+    }
+
     public static class ComplexTaskDataDownloadingState extends ComplexTaskViewState {
         private final int processedCount;
         private boolean showRequest;
