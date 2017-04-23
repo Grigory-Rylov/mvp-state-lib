@@ -27,6 +27,7 @@ public class ComplexScreenInteractor {
     private final ComplexTaskApiService apiService;
     private final ComplexTaskConvertedRepository convertedRepository;
     private final Logger log;
+    private boolean isSecondStepInProgress;
 
     public ComplexScreenInteractor(ComplexScreenPersistentRepository persistentRepository,
                                    ComplexTaskApiService apiService,
@@ -48,6 +49,7 @@ public class ComplexScreenInteractor {
 
     public void startStepTwo(StateReceiver<MvpState> callback) {
         final AtomicInteger elementsCountAtomic = new AtomicInteger();
+        isSecondStepInProgress = true;
         convertedRepository.requestCalculatedData()
                 .flatMap(items -> {
                     log.d(TAG, "requestCalculatedData flatMap " + items.size());
@@ -63,10 +65,12 @@ public class ComplexScreenInteractor {
                         },
                         throwable -> {
                             callback.updateState(new UpdateSecondStepNetworkError());
+                            isSecondStepInProgress = false;
                         },
                         () -> {
                             log.d(TAG, "startStepTwo: CompletedSecondStepState");
                             callback.updateState(new CompletedSecondStepState());
+                            isSecondStepInProgress = false;
                         }
                 );
     }
@@ -77,7 +81,7 @@ public class ComplexScreenInteractor {
             Iterator<ApiConvertedModel> iterator = elementsLeft.iterator();
             while (iterator.hasNext()) {
                 ApiConvertedModel currentModel = iterator.next();
-                ThreadUtils.pause(1000);
+                ThreadUtils.pause(2000);
                 iterator.remove();
                 log.d(TAG, "processElements: " + elementsLeft.size());
                 subscriber.onNext(elementsLeft);
@@ -85,5 +89,9 @@ public class ComplexScreenInteractor {
             log.d(TAG, "processElements: onCompleted " + elementsLeft.size());
             subscriber.onCompleted();
         });
+    }
+
+    public boolean isSecondStepInProgress() {
+        return isSecondStepInProgress;
     }
 }

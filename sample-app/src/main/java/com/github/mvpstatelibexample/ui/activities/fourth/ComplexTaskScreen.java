@@ -22,6 +22,7 @@ import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskViewState.*;
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskViewState.ComplexTaskDataDownloadingState;
 import com.github.mvpstatelibexample.ui.adapters.fourth.LeftItemsAdapter;
 import com.github.mvpstatelibexample.ui.fragments.fourth.ConfirmDialogFragment;
+import com.github.mvpstatelibexample.utils.LoggerCat;
 
 /**
  * Created by grishberg on 22.04.17.
@@ -109,6 +110,6 @@ public class ComplexTaskScreen extends BaseMvpActivity<ComplexTaskPresenter> {
 
     @Override
     protected ComplexTaskPresenter createPresenter() {
-        return new ComplexTaskPresenter(MyServiceLocator.provideComplexScreenInteractor());
+        return new ComplexTaskPresenter(MyServiceLocator.provideComplexScreenInteractor(), new LoggerCat());
     }
 }

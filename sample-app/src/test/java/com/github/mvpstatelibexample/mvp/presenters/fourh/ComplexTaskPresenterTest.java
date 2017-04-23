@@ -15,7 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class ComplexTaskPresenterTest {
     @Before
     public void setUp() throws Exception {
         when(modelList.size()).thenReturn(MODEL_LIST_SIZE);
-        presenter = new ComplexTaskPresenter(interactor);
+        presenter = new ComplexTaskPresenter(log, interactor);
         presenter.subscribe(view);
     }
 

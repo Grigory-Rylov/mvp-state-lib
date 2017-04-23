@@ -25,7 +25,7 @@ public class ComplexTaskConvertedRepositoryStub implements ComplexTaskConvertedR
             Log.d(TAG, "requestPersistentDataCalculation: request");
             ThreadUtils.pause(TIMEOUT);
             ArrayList<ApiConvertedModel> modelArrayList = new ArrayList<>();
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 10; i++) {
                 modelArrayList.add(new ApiConvertedModel(String.format(Locale.US, "api model name %d", i)));
             }
             subscriber.onNext(modelArrayList);
