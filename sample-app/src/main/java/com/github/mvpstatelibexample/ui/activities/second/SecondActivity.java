@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
-import com.github.mvpstatelibexample.mvp.presenters.SecondScreenPresenter;
+import com.github.mvpstatelibexample.mvp.presenters.second.SecondScreenPresenter;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondViewState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondViewState.NewValuesState;

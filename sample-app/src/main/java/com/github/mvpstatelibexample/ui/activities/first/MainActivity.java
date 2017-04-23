@@ -9,11 +9,12 @@ import android.widget.Toast;
 
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
-import com.github.mvpstatelibexample.mvp.presenters.FirstScreenPresenter;
+import com.github.mvpstatelibexample.mvp.presenters.first.FirstScreenPresenter;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.RequestState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.ErrorState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.ProgressState;
 import com.github.mvpstatelibexample.mvp.state.first.FirstViewStateModel.SuccessState;
+import com.github.mvpstatelibexample.ui.activities.fourth.ComplexTaskScreen;
 import com.github.mvpstatelibexample.ui.activities.second.SecondActivity;
 import com.github.mvpstatelibexample.ui.activities.third.ThirdActivity;
 import com.github.mvpstatelibexample.ui.view.first.BalanceView;
@@ -34,6 +35,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
     private Button buttonStart;
     private Button buttonSecondStep;
     private Button buttonThirdStep;
+    private Button buttonComplexTaskStep;
     private BalanceView balanceView; // view of nested presenter
 
     @Override
@@ -56,12 +58,14 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
         buttonSecondStep = (Button) findViewById(R.id.buttonSecondStep);
         buttonThirdStep = (Button) findViewById(R.id.buttonThirdStep);
         balanceView = (BalanceView) findViewById(R.id.balanceView);
+        buttonComplexTaskStep = (Button) findViewById(R.id.buttonComplexTaskStep);
     }
 
     private void initButtonHandlers() {
         buttonStart.setOnClickListener(this);
         buttonSecondStep.setOnClickListener(this);
         buttonThirdStep.setOnClickListener(this);
+        buttonComplexTaskStep.setOnClickListener(this);
     }
 
     @Override
@@ -111,6 +115,10 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
 
             case R.id.buttonSecondStep:
                 SecondActivity.start(this);
+                break;
+
+            case R.id.buttonComplexTaskStep:
+                ComplexTaskScreen.start(this);
                 break;
 
             default:

@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.mvp.presenters;
+package com.github.mvpstatelibexample.mvp.presenters.first;
 
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.mvp.models.first.FirstModel;

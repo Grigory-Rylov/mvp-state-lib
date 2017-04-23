@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.mvp.state.presenter;
+package com.github.mvpstatelibexample.mvp.state.second;
 
 import com.github.mvpstatelib.framework.state.AbsMvpState;
 

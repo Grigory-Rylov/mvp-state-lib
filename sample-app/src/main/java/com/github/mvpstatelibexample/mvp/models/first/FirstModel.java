@@ -13,7 +13,7 @@ import rx.schedulers.Schedulers;
  */
 @SuppressWarnings("unchecked")
 public class FirstModel {
-    public static final int TIMEOUT = 5000;
+    private static final int TIMEOUT = 5000;
 
     public void getData(final StateReceiver presenter) {
         // извлечь данные из сети

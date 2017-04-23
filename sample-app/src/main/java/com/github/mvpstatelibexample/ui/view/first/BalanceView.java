@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.mvpstatelibexample.R;
-import com.github.mvpstatelibexample.mvp.presenters.BalanceViewPresenter;
-import com.github.mvpstatelibexample.mvp.state.balance.BalancePresenterState;
-import com.github.mvpstatelibexample.mvp.state.balance.BalanceViewState.UpdateBalanceState;
+import com.github.mvpstatelibexample.mvp.presenters.first.BalanceViewPresenter;
+import com.github.mvpstatelibexample.mvp.state.first.BalancePresenterState;
+import com.github.mvpstatelibexample.mvp.state.first.BalanceViewState.UpdateBalanceState;
 import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.view.MvpLinearLayout;
 

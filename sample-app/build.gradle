@@ -45,6 +45,9 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
+    testCompile 'org.mockito:mockito-core:2.2.0'
+    testCompile 'junit:junit:4.12'
+
     provided project(':mvp-state-processor')
     apt project(':mvp-state-processor')
 

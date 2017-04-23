@@ -1,4 +1,4 @@
-package com.github.mvpstatelibexample.mvp.state.view;
+package com.github.mvpstatelibexample.mvp.state.first;
 
 import com.github.mvpstatelib.framework.state.AbsMvpState;
 

@@ -1,7 +1,7 @@
-package com.github.mvpstatelibexample.mvp.presenters;
+package com.github.mvpstatelibexample.mvp.presenters.first;
 
-import com.github.mvpstatelibexample.mvp.state.balance.BalancePresenterState;
-import com.github.mvpstatelibexample.mvp.state.balance.BalanceViewState;
+import com.github.mvpstatelibexample.mvp.state.first.BalancePresenterState;
+import com.github.mvpstatelibexample.mvp.state.first.BalanceViewState;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
 import com.github.mvpstatelib.framework.state.MvpState;
 

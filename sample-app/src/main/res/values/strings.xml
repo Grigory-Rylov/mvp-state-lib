@@ -7,5 +7,9 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="third_step_button_title">Open ViewPager</string>
+    <string name="complex_task_step_button_title">Open complex task</string>
     <string name="fragment_first_title">FirstFragment</string>
+    <string name="confirm_dialog_title">Please confirm</string>
+    <string name="confirm_dialog_message">Are you sure ? count = %d</string>
+    <string name="complex_task_step_update_text">processed = %d</string>
 </resources>

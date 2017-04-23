@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.mvpstatelibexample.R;
-import com.github.mvpstatelibexample.mvp.presenters.FirstFragmentPresenter;
+import com.github.mvpstatelibexample.mvp.presenters.first.FirstFragmentPresenter;
 import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.ui.BaseMvpFragment;
 import com.github.mvpstatelibexample.ui.activities.third.FragmentInteractionListener;
