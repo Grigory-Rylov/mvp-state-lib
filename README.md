@@ -17,7 +17,7 @@ compile 'com.github.mvplib:mvp-state-lib:0.1.7'
 ```
 and for generating state resolver
 ```groovy
-provided 'com.github.mvplib:mvp-state-processor:0.1.7'
+compile 'com.github.mvplib:mvp-state-processor:0.1.7'
 apt 'com.github.mvplib:mvp-state-processor:0.1.7'
 ```
 License
