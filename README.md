@@ -6,19 +6,19 @@ Even if process was killed by system, after resore - your view and presenters ho
 without manual storing state to Bundle (I tell you a secret: library do it automatic)
 
 View has single public method - onUpdateState() - it received events from presenter.
-Events implements MvpState interface - that is marker interface, inherited from Serializable.
-Your State-models must implements MvpState and its fields must implements Serializable.
+Events implements ViewState (for View) and PresenterState(for Presenter) interface - that is marker interface, inherited from Serializable.
+Your State-models must implements ViewState or PresenterState and its fields must implements Serializable.
 
 ### Download
 
 Grab via Gradle:
 ```groovy
-compile 'com.github.mvplib:mvp-state-lib:0.1.7'
+compile 'com.github.mvplib:mvp-state-lib:0.2.0'
 ```
 and for generating state resolver
 ```groovy
-compile 'com.github.mvplib:mvp-state-processor:0.1.7'
-apt 'com.github.mvplib:mvp-state-processor:0.1.7'
+compile 'com.github.mvplib:mvp-state-processor:0.2.0'
+apt 'com.github.mvplib:mvp-state-processor:0.2.0'
 ```
 License
 -------
