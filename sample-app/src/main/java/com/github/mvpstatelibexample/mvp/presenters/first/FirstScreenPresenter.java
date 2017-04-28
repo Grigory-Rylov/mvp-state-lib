@@ -1,5 +1,6 @@
 package com.github.mvpstatelibexample.mvp.presenters.first;
 
+import com.github.mvpstatelib.framework.state.PresenterState;
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.mvp.models.first.FirstModel;
 import com.github.mvpstatelibexample.mvp.state.first.FirstPresenterStateModel.RequestState;
@@ -25,7 +26,7 @@ public class FirstScreenPresenter extends BaseMvpPresenter {
      * @param state событие
      */
     @Override
-    protected void onStateUpdated(final MvpState state) {
+    protected void onStateUpdated(final PresenterState state) {
         GeneratedFirstScreenPresenterSubscriber.processState(this, state);
     }
 

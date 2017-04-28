@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.mvp.presenters.first.FirstScreenPresenter;
@@ -79,7 +80,7 @@ public class MainActivity extends BaseMvpActivity<FirstScreenPresenter>
      * @param state - model with updates from presenter
      */
     @Override
-    public void onStateUpdated(final MvpState state) {
+    public void onStateUpdated(final ViewState state) {
         GeneratedMainActivitySubscriber.processState(this, state);
     }
 

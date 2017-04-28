@@ -8,13 +8,14 @@ import android.widget.LinearLayout;
 import com.github.mvpstatelib.framework.lifecycle.LifeCycleObservable;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
 import com.github.mvpstatelib.framework.state.StateObserver;
+import com.github.mvpstatelib.framework.state.ViewState;
 
 /**
  * Created by grishberg on 26.01.17.
  * Base LinearLayoutView
  */
 public abstract class MvpLinearLayout<P extends BaseMvpPresenter>
-        extends LinearLayout implements StateObserver, DelegateTagHolder {
+        extends LinearLayout implements StateObserver<ViewState>, DelegateTagHolder<ViewState> {
 
     private MvpHelper<P> helper;
 
@@ -57,4 +58,7 @@ public abstract class MvpLinearLayout<P extends BaseMvpPresenter>
         helper.onDetachedFromWindow();
     }
 
+    @Override
+    public void onStateUpdated(ViewState model) {
+    }
 }

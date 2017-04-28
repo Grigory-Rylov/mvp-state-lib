@@ -6,11 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.mvp.presenters.first.BalanceViewPresenter;
 import com.github.mvpstatelibexample.mvp.state.first.BalancePresenterState;
 import com.github.mvpstatelibexample.mvp.state.first.BalanceViewState.UpdateBalanceState;
-import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.view.MvpLinearLayout;
 
 /**
@@ -31,7 +31,7 @@ public class BalanceView extends MvpLinearLayout<BalanceViewPresenter> {
     }
 
     @Override
-    public void onStateUpdated(final MvpState state) {
+    public void onStateUpdated(final ViewState state) {
         Log.d(TAG, "onStateUpdated: " + state);
         if(state instanceof UpdateBalanceState) {
             updateBalance((UpdateBalanceState) state);

@@ -4,7 +4,7 @@ package com.github.mvpstatelib.framework.state;
  * Created by grishberg on 22.04.17.
  */
 
-public abstract class AbsMvpState implements MvpState {
+public abstract class AbsViewState implements ViewState {
     public void beforeStateReceived() {
         //to be implemented in subclass
     }

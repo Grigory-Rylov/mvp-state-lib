@@ -1,6 +1,6 @@
 package com.github.mvpstatelibexample.mvp.state.second;
 
-import com.github.mvpstatelib.framework.state.AbsMvpState;
+import com.github.mvpstatelib.framework.state.AbsViewState;
 import com.github.mvpstatelib.framework.state.ModelWithNonSerializable;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author g
  */
-public abstract class SecondViewState extends AbsMvpState {
+public abstract class SecondViewState extends AbsViewState {
     public static class NewValuesState extends SecondViewState implements ModelWithNonSerializable {
         private final transient List<String> values;
 

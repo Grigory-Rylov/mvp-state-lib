@@ -3,7 +3,7 @@ apply plugin: 'java'
 ext {
     PUBLISH_GROUP_ID = 'com.github.mvplib'
     PUBLISH_ARTIFACT_ID = 'mvp-state-processor'
-    PUBLISH_VERSION = '0.1.7'
+    PUBLISH_VERSION = '0.2.0'
 }
 
 dependencies {

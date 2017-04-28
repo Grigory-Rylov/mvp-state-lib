@@ -1,6 +1,6 @@
 package com.github.mvpstatelibexample.mvp.state.fourth;
 
-import com.github.mvpstatelib.framework.state.AbsMvpState;
+import com.github.mvpstatelib.framework.state.AbsViewState;
 import com.github.mvpstatelibexample.mvp.models.beans.fourth.ApiConvertedModel;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by grishberg on 22.04.17.
  */
 
-public class ComplexTaskViewState extends AbsMvpState {
+public class ComplexTaskViewState extends AbsViewState {
     public static class ShowProgressState extends ComplexTaskViewState {
         private final boolean showProgress;
 

@@ -7,13 +7,14 @@ import android.support.v4.app.Fragment;
 import com.github.mvpstatelib.framework.MvpDelegate;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
 import com.github.mvpstatelib.framework.state.StateObserver;
+import com.github.mvpstatelib.framework.state.ViewState;
 
 /**
  * Created by grishberg on 24.01.17.
  */
 @SuppressWarnings("unchecked")
 public abstract class BaseMvpFragment<P extends BaseMvpPresenter>
-        extends Fragment implements StateObserver {
+        extends Fragment implements StateObserver<ViewState> {
     private P presenter;
 
     @Override

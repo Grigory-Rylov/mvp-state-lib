@@ -7,13 +7,15 @@ import android.widget.RelativeLayout;
 
 import com.github.mvpstatelib.framework.lifecycle.LifeCycleObservable;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
+import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.state.StateObserver;
+import com.github.mvpstatelib.framework.state.ViewState;
 
 /**
  * Created by grishberg on 26.01.17.
  */
 public abstract class MvpRelativeLayout<P extends BaseMvpPresenter>
-        extends RelativeLayout implements StateObserver, DelegateTagHolder {
+        extends RelativeLayout implements StateObserver<ViewState>, DelegateTagHolder<ViewState> {
 
     private MvpHelper<P> helper;
 
@@ -54,5 +56,10 @@ public abstract class MvpRelativeLayout<P extends BaseMvpPresenter>
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         helper.onDetachedFromWindow();
+    }
+
+    @Override
+    public void onStateUpdated(ViewState model) {
+
     }
 }

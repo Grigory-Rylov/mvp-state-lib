@@ -9,6 +9,7 @@ import com.github.mvpstatelib.framework.lifecycle.LifeCycleObserver;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
 import com.github.mvpstatelib.framework.state.StateObserver;
 import com.github.mvpstatelib.framework.MvpDelegate;
+import com.github.mvpstatelib.framework.state.ViewState;
 
 import java.util.HashSet;
 
@@ -17,7 +18,7 @@ import java.util.HashSet;
  */
 @SuppressWarnings("unchecked")
 public abstract class BaseMvpActivity<P extends BaseMvpPresenter>
-        extends AppCompatActivity implements StateObserver, LifeCycleObservable {
+        extends AppCompatActivity implements StateObserver<ViewState>, LifeCycleObservable {
     private P presenter;
     private HashSet<LifeCycleObserver> observers = new HashSet<>();
 

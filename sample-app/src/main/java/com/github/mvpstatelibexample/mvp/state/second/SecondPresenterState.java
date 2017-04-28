@@ -1,6 +1,6 @@
 package com.github.mvpstatelibexample.mvp.state.second;
 
-import com.github.mvpstatelib.framework.state.AbsMvpState;
+import com.github.mvpstatelib.framework.state.AbsPresenterState;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author g
  */
-public abstract class SecondPresenterState extends AbsMvpState {
+public abstract class SecondPresenterState extends AbsPresenterState {
     public static class RequestState extends SecondPresenterState{
     }
 

@@ -1,5 +1,7 @@
 package com.github.mvpstatelibexample.mvp.presenters.second;
 
+import com.github.mvpstatelib.framework.state.PresenterState;
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.mvp.models.second.SecondModel;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState.RequestState;
@@ -7,7 +9,6 @@ import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState.Respo
 import com.github.mvpstatelibexample.mvp.state.second.SecondViewState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondViewState.ProgressState;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
-import com.github.mvpstatelib.framework.state.MvpState;
 
 /**
  * Created by grishberg on 23.01.17.
@@ -20,7 +21,7 @@ public class SecondScreenPresenter extends BaseMvpPresenter {
     }
 
     @Override
-    protected void onStateUpdated(final MvpState state) {
+    protected void onStateUpdated(final PresenterState state) {
         GeneratedSecondScreenPresenterSubscriber.processState(this, state);
     }
 
@@ -46,7 +47,7 @@ public class SecondScreenPresenter extends BaseMvpPresenter {
     }
 
     @Override
-    protected void onNonSerializableEmpty(MvpState secondViewState) {
+    protected void onNonSerializableEmpty(ViewState secondViewState) {
         if (secondViewState instanceof SecondViewState.NewValuesState) {
             requestDataFromModel(null);
         }

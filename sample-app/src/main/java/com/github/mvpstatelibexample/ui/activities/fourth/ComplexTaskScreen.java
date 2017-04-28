@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelib.framework.ui.BaseMvpActivity;
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
@@ -55,7 +56,7 @@ public class ComplexTaskScreen extends BaseMvpActivity<ComplexTaskPresenter> {
     }
 
     @Override
-    public void onStateUpdated(MvpState model) {
+    public void onStateUpdated(ViewState model) {
         GeneratedComplexTaskScreenSubscriber.processState(this, model);
     }
 

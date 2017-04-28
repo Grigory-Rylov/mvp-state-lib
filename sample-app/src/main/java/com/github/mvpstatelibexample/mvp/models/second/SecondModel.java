@@ -1,7 +1,7 @@
 package com.github.mvpstatelibexample.mvp.models.second;
 
+import com.github.mvpstatelib.framework.state.PresenterState;
 import com.github.mvpstatelibexample.mvp.state.second.SecondPresenterState;
-import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.state.StateReceiver;
 import com.github.mvpstatelibexample.utils.ThreadUtils;
 
@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
 public class SecondModel {
     private static final int TIMEOUT = 500;
 
-    public void requestData(final StateReceiver<MvpState> callback) {
+    public void requestData(final StateReceiver<PresenterState> callback) {
         final Observable<SecondPresenterState.ResponseState> screenValuesObservable = Observable.create(subscriber -> {
             // emulating long routine
             final ArrayList<String> list = new ArrayList<>();

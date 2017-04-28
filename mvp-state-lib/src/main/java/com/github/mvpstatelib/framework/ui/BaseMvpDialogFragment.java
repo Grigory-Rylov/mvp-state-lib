@@ -8,13 +8,14 @@ import com.github.mvpstatelib.framework.MvpDelegate;
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
 import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.state.StateObserver;
+import com.github.mvpstatelib.framework.state.ViewState;
 
 /**
  * Created by grishberg on 01.04.17.
  */
 @SuppressWarnings("unchecked")
 public abstract class BaseMvpDialogFragment<P extends BaseMvpPresenter> extends DialogFragment
-        implements StateObserver {
+        implements StateObserver<ViewState> {
     private P presenter;
 
     @Override
@@ -29,8 +30,7 @@ public abstract class BaseMvpDialogFragment<P extends BaseMvpPresenter> extends 
     }
 
     @Override
-    public void onStateUpdated(MvpState model) {
-
+    public void onStateUpdated(ViewState state) {
     }
 
     private String getFragmentTag() {

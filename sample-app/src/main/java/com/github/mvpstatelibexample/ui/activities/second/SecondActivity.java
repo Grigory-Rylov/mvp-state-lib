@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.mvp.presenters.second.SecondScreenPresenter;
@@ -60,7 +61,7 @@ public class SecondActivity extends BaseMvpActivity<SecondScreenPresenter> {
     }
 
     @Override
-    public void onStateUpdated(final MvpState state) {
+    public void onStateUpdated(final ViewState state) {
         GeneratedSecondActivitySubscriber.processState(this, state);
     }
 

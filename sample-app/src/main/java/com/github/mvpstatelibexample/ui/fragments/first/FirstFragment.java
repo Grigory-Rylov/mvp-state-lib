@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelibexample.R;
 import com.github.mvpstatelibexample.mvp.presenters.first.FirstFragmentPresenter;
 import com.github.mvpstatelib.framework.state.MvpState;
@@ -59,7 +60,7 @@ public class FirstFragment extends BaseMvpFragment<FirstFragmentPresenter> {
     }
 
     @Override
-    public void onStateUpdated(MvpState viewStateModel) {
+    public void onStateUpdated(ViewState viewStateModel) {
         //TODO: add some action when state received
     }
 

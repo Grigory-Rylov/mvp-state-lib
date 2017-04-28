@@ -1,7 +1,7 @@
 package com.github.mvpstatelibexample.mvp.presenters.fourh;
 
 import com.github.mvpstatelib.framework.presenter.BaseMvpPresenter;
-import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.PresenterState;
 import com.github.mvpstatelib.state.annotations.SubscribeState;
 import com.github.mvpstatelibexample.mvp.models.fourth.ComplexScreenInteractor;
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskPresenterState;
@@ -23,7 +23,7 @@ public class ComplexTaskPresenter extends BaseMvpPresenter {
     }
 
     @Override
-    protected void onStateUpdated(MvpState presenterState) {
+    protected void onStateUpdated(PresenterState presenterState) {
         GeneratedComplexTaskPresenterSubscriber.processState(this, presenterState);
     }
 

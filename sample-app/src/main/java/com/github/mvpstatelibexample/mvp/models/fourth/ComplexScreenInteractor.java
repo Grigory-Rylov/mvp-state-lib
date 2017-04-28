@@ -1,6 +1,7 @@
 package com.github.mvpstatelibexample.mvp.models.fourth;
 
 import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.PresenterState;
 import com.github.mvpstatelib.framework.state.StateReceiver;
 import com.github.mvpstatelibexample.mvp.models.beans.fourth.ApiConvertedModel;
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskPresenterState.*;
@@ -38,7 +39,7 @@ public class ComplexScreenInteractor {
         this.log = log;
     }
 
-    public void requestPersistenDataFromRepository(StateReceiver<MvpState> callback) {
+    public void requestPersistenDataFromRepository(StateReceiver<PresenterState> callback) {
         persistentRepository.getPersistentData()
                 .flatMap(response -> apiService.requestPersistentDataCalculation(response))
                 .flatMap(apiResponse -> Observable.just(new PersistentStoreResponse(apiResponse)))
@@ -47,7 +48,7 @@ public class ComplexScreenInteractor {
                 .subscribe(callback::updateState);
     }
 
-    public void startStepTwo(StateReceiver<MvpState> callback) {
+    public void startStepTwo(StateReceiver<PresenterState> callback) {
         final AtomicInteger elementsCountAtomic = new AtomicInteger();
         isSecondStepInProgress = true;
         convertedRepository.requestCalculatedData()

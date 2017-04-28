@@ -1,14 +1,13 @@
 package com.github.mvpstatelibexample.mvp.state.first;
 
-import com.github.mvpstatelib.framework.state.AbsMvpState;
-import com.github.mvpstatelib.framework.state.MvpState;
+import com.github.mvpstatelib.framework.state.AbsPresenterState;
 
 /**
  * Created on 08.03.17.
  *
  * @author g
  */
-public abstract class FirstPresenterStateModel extends AbsMvpState {
+public abstract class FirstPresenterStateModel extends AbsPresenterState {
 
     public static class RequestState extends FirstPresenterStateModel {
     }
