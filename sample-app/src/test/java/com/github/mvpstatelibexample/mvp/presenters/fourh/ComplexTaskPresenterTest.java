@@ -1,7 +1,7 @@
 package com.github.mvpstatelibexample.mvp.presenters.fourh;
 
-import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.state.StateObserver;
+import com.github.mvpstatelib.framework.state.ViewState;
 import com.github.mvpstatelibexample.mvp.models.beans.fourth.ApiConvertedModel;
 import com.github.mvpstatelibexample.mvp.models.fourth.ComplexScreenInteractor;
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskPresenterState;
@@ -9,6 +9,7 @@ import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskPresenterState.
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskPresenterState.PersistentStoreResponse;
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskViewState;
 import com.github.mvpstatelibexample.mvp.state.fourth.ComplexTaskViewState.ComplexTaskDataDownloadingState;
+import com.github.mvpstatelibexample.utils.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,9 @@ import static org.mockito.Mockito.*;
 public class ComplexTaskPresenterTest {
     public static final int MODEL_LIST_SIZE = 1000;
     @Mock
-    StateObserver<MvpState> view;
+    StateObserver<ViewState> view;
+    @Mock
+    Logger log;
 
     @Mock
     ComplexScreenInteractor interactor;
@@ -42,7 +45,7 @@ public class ComplexTaskPresenterTest {
     @Before
     public void setUp() throws Exception {
         when(modelList.size()).thenReturn(MODEL_LIST_SIZE);
-        presenter = new ComplexTaskPresenter(log, interactor);
+        presenter = new ComplexTaskPresenter(interactor, log);
         presenter.subscribe(view);
     }
 

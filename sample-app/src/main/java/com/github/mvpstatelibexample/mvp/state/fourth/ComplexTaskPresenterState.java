@@ -1,7 +1,6 @@
 package com.github.mvpstatelibexample.mvp.state.fourth;
 
 import com.github.mvpstatelib.framework.state.AbsPresenterState;
-import com.github.mvpstatelib.framework.state.AbsViewState;
 import com.github.mvpstatelibexample.mvp.models.beans.fourth.ApiConvertedModel;
 
 import java.util.List;
