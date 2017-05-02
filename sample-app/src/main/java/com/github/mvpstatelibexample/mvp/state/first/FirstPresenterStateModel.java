@@ -1,6 +1,7 @@
 package com.github.mvpstatelibexample.mvp.state.first;
 
 import com.github.mvpstatelib.framework.state.AbsPresenterState;
+import com.github.mvpstatelib.framework.state.PresenterState;
 
 /**
  * Created on 08.03.17.
@@ -33,6 +34,11 @@ public abstract class FirstPresenterStateModel extends AbsPresenterState {
 
         public int getCount() {
             return count;
+        }
+
+        @Override
+        public ResponseState reduct(PresenterState newPresenterState) {
+            return (ResponseState) newPresenterState;
         }
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.github.mvpstatelib.framework.state.ModelWithNonSerializable;
-import com.github.mvpstatelib.framework.state.MvpState;
 import com.github.mvpstatelib.framework.state.PresenterState;
 import com.github.mvpstatelib.framework.state.StateObserver;
 import com.github.mvpstatelib.framework.state.StateReceiver;
@@ -113,7 +112,11 @@ public abstract class BaseMvpPresenter
     @Override
     public void updateState(final PresenterState presenterState) {
         if (presenterState != null && presenterState.isNeedToSaveState()) {
-            this.presenterState = presenterState;
+            if (this.presenterState != null) {
+                this.presenterState = this.presenterState.reduct(presenterState);
+            } else {
+                this.presenterState = presenterState;
+            }
         }
         onStateUpdated(presenterState);
     }

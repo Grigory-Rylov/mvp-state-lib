@@ -5,4 +5,5 @@ package com.github.mvpstatelib.framework.state;
  */
 
 public interface PresenterState extends MvpState {
+    PresenterState reduct(PresenterState presenterState);
 }

@@ -16,4 +16,9 @@ public abstract class AbsPresenterState implements PresenterState {
     public boolean isNeedToSaveState() {
         return true;
     }
+
+    @Override
+    public PresenterState reduct(PresenterState newPresenterState) {
+        return newPresenterState;
+    }
 }
