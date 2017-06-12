@@ -27,7 +27,11 @@ public abstract class BaseMvpPresenter
     private PresenterState presenterState;
 
     protected void updateViewState(@Nullable ViewState viewState) {
-        this.viewState = viewState;
+        if (this.viewState != null) {
+            this.viewState = this.viewState.reduct(viewState);
+        } else {
+            this.viewState = viewState;
+        }
 
         notifyObservers();
     }

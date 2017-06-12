@@ -65,7 +65,7 @@ public abstract class BaseMvpFragment<P extends BaseMvpPresenter>
         }
     }
 
-    public P getPresenter() {
+    protected P getPresenter() {
         return presenter;
     }
 

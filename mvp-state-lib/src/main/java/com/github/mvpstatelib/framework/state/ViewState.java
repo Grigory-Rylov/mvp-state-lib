@@ -5,4 +5,5 @@ package com.github.mvpstatelib.framework.state;
  */
 
 public interface ViewState extends MvpState {
+    ViewState reduct(ViewState viewState);
 }

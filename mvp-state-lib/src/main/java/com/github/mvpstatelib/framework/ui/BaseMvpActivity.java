@@ -80,7 +80,7 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter>
         observers.remove(observer);
     }
 
-    public P getPresenter() {
+    protected P getPresenter() {
         return presenter;
     }
 

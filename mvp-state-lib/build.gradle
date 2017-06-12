@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'com.github.mvplib'
     PUBLISH_ARTIFACT_ID = 'mvp-state-lib'
-    PUBLISH_VERSION = '0.2.0'
+    PUBLISH_VERSION = '0.2.1'
 }
 
 
@@ -14,8 +14,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 25
-        versionCode 9
-        versionName "0.2.0"
+        versionCode 10
+        versionName "0.2.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    String support_version = "25.2.0"
+    String support_version = "25.3.1"
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

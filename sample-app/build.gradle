@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    String support_version = "25.2.0"
+    String support_version = "25.3.1"
     String rx_version = "1.2.1"
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

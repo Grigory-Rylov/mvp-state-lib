@@ -16,4 +16,9 @@ public abstract class AbsViewState implements ViewState {
     public boolean isNeedToSaveState() {
         return true;
     }
+
+    @Override
+    public ViewState reduct(ViewState viewState) {
+        return viewState;
+    }
 }
